@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تجاري وإداري - Lavida Properties</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, #2c5f4f 0%, #4a8c7a 100%);
+            padding: 120px 0 60px;
+            margin-top: 70px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .categories-section {
+            padding: 80px 0;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            padding: 30px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .category-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .category-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .category-content {
+            padding: 40px;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .property-item {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .property-item:hover {
+            background: var(--white);
+            border-color: #FFA500;
+            transform: translateY(-3px);
+        }
+
+        .property-item i {
+            font-size: 2.5rem;
+            color: #FFA500;
+            margin-bottom: 15px;
+        }
+
+        .property-item h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .property-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 40px auto;
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 95, 79, 0.3);
+        }
+
+        .back-button i {
+            margin-left: 10px;
+        }
+
+        .button-wrapper {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .real-properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .real-property-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .real-property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: #FFA500;
+        }
+
+        .property-badge {
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .property-details {
+            padding: 20px;
+        }
+
+        .property-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .property-info-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .property-info-row i {
+            color: #FFA500;
+            width: 20px;
+        }
+
+        .property-price {
+            background: var(--bg-light);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border-right: 4px solid #FFA500;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .price-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c5f4f;
+        }
+
+        .property-footer {
+            padding: 15px 20px;
+            background: var(--bg-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #2c5f4f 0%, #4a8c7a 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 95, 79, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="index.html#home">الرئيسية</a></li>
+                        <li><a href="index.html#services">خدماتنا</a></li>
+                        <li><a href="index.html#contact">تواصل معنا</a></li>
+                    </ul>
+                    <div class="logo">
+                        <h1>Lavida Properties</h1>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-building"></i> تجاري وإداري</h1>
+            <p>حلول عقارية متكاملة لنجاح مشروعك التجاري</p>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            
+            <!-- محلات تجارية -->
+            <div class="category-card">
+                <div class="category-header">
+                    <h2><i class="fas fa-store"></i> محلات تجارية</h2>
+                    <p>محلات في مواقع استراتيجية لنجاح تجارتك</p>
+                </div>
+                <div class="category-content">
+                    <!-- Static Examples -->
+                    <div class="properties-grid">
+                        <div class="property-item">
+                            <i class="fas fa-shopping-bag"></i>
+                            <h3>محلات في مولات</h3>
+                            <p>محلات تجارية داخل أكبر المولات والمراكز التجارية</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-road"></i>
+                            <h3>محلات على شوارع رئيسية</h3>
+                            <p>واجهات تجارية على أهم الشوارع الحيوية</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-utensils"></i>
+                            <h3>محلات للمطاعم والكافيهات</h3>
+                            <p>مساحات مثالية لمشاريع الأطعمة والمشروبات</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            <h3>محلات في كمبوندات</h3>
+                            <p>محلات داخل المجمعات السكنية الكبرى</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-shirt"></i>
+                            <h3>محلات ملابس وإكسسوارات</h3>
+                            <p>مساحات مناسبة لمحلات الأزياء والموضة</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-cash-register"></i>
+                            <h3>محلات سوبر ماركت</h3>
+                            <p>مساحات واسعة لمشاريع السوبر ماركت والهايبر</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Real Properties from Admin - Removed, will show only in properties-list.html -->
+                </div>
+            </div>
+
+            <!-- وحدات إدارية -->
+            <div class="category-card">
+                <div class="category-header">
+                    <h2><i class="fas fa-briefcase"></i> وحدات إدارية</h2>
+                    <p>مكاتب إدارية بمواصفات عالمية</p>
+                </div>
+                <div class="category-content">
+                    <!-- Static Examples -->
+                    <div class="properties-grid">
+                        <div class="property-item">
+                            <i class="fas fa-building"></i>
+                            <h3>مكاتب إدارية في أبراج</h3>
+                            <p>مكاتب حديثة في أبراج إدارية بمواصفات عالمية</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-city"></i>
+                            <h3>وحدات في مجمعات إدارية</h3>
+                            <p>مساحات متنوعة في أفضل المجمعات الإدارية</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-laptop"></i>
+                            <h3>مكاتب جاهزة للعمل</h3>
+                            <p>مكاتب مجهزة بالكامل بأحدث التقنيات</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-users"></i>
+                            <h3>مساحات عمل مشتركة</h3>
+                            <p>Co-working spaces بمرافق متكاملة</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>مقرات للشركات</h3>
+                            <p>مساحات كبيرة مناسبة لمقرات الشركات الكبرى</p>
+                        </div>
+                        <div class="property-item">
+                            <i class="fas fa-handshake"></i>
+                            <h3>مكاتب للاستشارات</h3>
+                            <p>وحدات مثالية للشركات الاستشارية والمهنية</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Real Properties from Admin - Removed, will show only in properties-list.html -->
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="button-wrapper">
+                <a href="index.html#services" class="back-button">
+                    <i class="fas fa-arrow-right"></i>
+                    العودة للصفحة الرئيسية
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>جميع الحقوق محفوظة - Lavida Properties &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

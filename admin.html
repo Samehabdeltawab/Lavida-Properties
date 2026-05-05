@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Lavida Properties</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 900px;
+            margin: 100px auto 50px;
+            padding: 40px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #FFA500;
+        }
+
+        .admin-header h1 {
+            color: var(--text-dark);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .admin-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group label .required {
+            color: #ff0000;
+            margin-right: 3px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #FFA500;
+            background: var(--white);
+            box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1);
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 165, 0, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-container {
+                margin: 80px 15px 30px;
+                padding: 25px;
+            }
+
+            .admin-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul class="nav-links">
+                        <li><a href="index.html#home">الرئيسية</a></li>
+                        <li><a href="index.html#services">خدماتنا</a></li>
+                        <li><a href="index.html#contact">تواصل معنا</a></li>
+                    </ul>
+                    <div class="logo">
+                        <h1>Lavida Properties</h1>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Admin Panel -->
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1><i class="fas fa-user-shield"></i> لوحة التحكم</h1>
+            <p>إضافة عقار جديد</p>
+        </div>
+
+        <div id="successMessage" class="success-message">
+            <i class="fas fa-check-circle"></i> تم إضافة العقار بنجاح!
+        </div>
+
+        <form id="propertyForm">
+            <!-- نوع العقار -->
+            <div class="form-group">
+                <label><span class="required">*</span> نوع العقار</label>
+                <select class="form-control" id="propertyType" required>
+                    <option value="">اختر نوع العقار</option>
+                    <option value="residential">سكني</option>
+                    <option value="commercial">تجاري</option>
+                    <option value="administrative">إداري</option>
+                    <option value="clinic">عيادة</option>
+                </select>
+            </div>
+
+            <!-- نوع الوحدة السكنية (يظهر فقط في حالة سكني) -->
+            <div class="form-group hidden" id="unitTypeGroup">
+                <label><span class="required">*</span> نوع الوحدة</label>
+                <select class="form-control" id="unitType">
+                    <option value="">اختر نوع الوحدة</option>
+                    <option value="apartment">شقة</option>
+                    <option value="villa">فيلا</option>
+                    <option value="duplex">دوبلكس</option>
+                    <option value="ground-garden">أرضي بجاردن</option>
+                    <option value="ground">أرضي</option>
+                </select>
+            </div>
+
+            <!-- تصنيف (مناطق أو كمبوندات - للسكني فقط) -->
+            <div class="form-group hidden" id="categoryGroup">
+                <label><span class="required">*</span> التصنيف</label>
+                <select class="form-control" id="category">
+                    <option value="">اختر التصنيف</option>
+                    <option value="areas">مناطق</option>
+                    <option value="compounds">كمبوندات</option>
+                </select>
+            </div>
+
+            <!-- المحافظة والمدينة -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label><span class="required">*</span> المحافظة</label>
+                    <select class="form-control" id="governorate" required>
+                        <option value="">اختر المحافظة</option>
+                        <option value="cairo">القاهرة</option>
+                        <option value="giza">الجيزة</option>
+                        <option value="alexandria">الإسكندرية</option>
+                        <option value="dakahlia">الدقهلية</option>
+                        <option value="red-sea">البحر الأحمر</option>
+                        <option value="beheira">البحيرة</option>
+                        <option value="fayoum">الفيوم</option>
+                        <option value="gharbiya">الغربية</option>
+                        <option value="ismailia">الإسماعيلية</option>
+                        <option value="menofia">المنوفية</option>
+                        <option value="minya">المنيا</option>
+                        <option value="qaliubiya">القليوبية</option>
+                        <option value="new-valley">الوادي الجديد</option>
+                        <option value="suez">السويس</option>
+                        <option value="aswan">أسوان</option>
+                        <option value="assiut">أسيوط</option>
+                        <option value="beni-suef">بني سويف</option>
+                        <option value="port-said">بورسعيد</option>
+                        <option value="damietta">دمياط</option>
+                        <option value="sharkia">الشرقية</option>
+                        <option value="south-sinai">جنوب سيناء</option>
+                        <option value="kafr-el-sheikh">كفر الشيخ</option>
+                        <option value="matrouh">مطروح</option>
+                        <option value="luxor">الأقصر</option>
+                        <option value="qena">قنا</option>
+                        <option value="north-sinai">شمال سيناء</option>
+                        <option value="sohag">سوهاج</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="required">*</span> المدينة</label>
+                    <select class="form-control" id="city" required>
+                        <option value="">اختر المحافظة أولاً</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- المساحة والطابق -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label><span class="required">*</span> المساحة (متر مربع)</label>
+                    <input type="number" class="form-control" id="area" placeholder="مثال: 150" required>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="required">*</span> الطابق</label>
+                    <select class="form-control" id="floor" required>
+                        <option value="">اختر الطابق</option>
+                        <option value="ground">أرضي</option>
+                        <option value="first">أول</option>
+                        <option value="second">ثاني</option>
+                        <option value="third">ثالث</option>
+                        <option value="fourth">رابع</option>
+                        <option value="fifth">خامس</option>
+                        <option value="sixth">سادس</option>
+                        <option value="seventh">سابع</option>
+                        <option value="eighth">ثامن</option>
+                        <option value="ninth">تاسع</option>
+                        <option value="tenth">عاشر</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- التشطيب والوجهة -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label><span class="required">*</span> التشطيب</label>
+                    <select class="form-control" id="finishing" required>
+                        <option value="">اختر نوع التشطيب</option>
+                        <option value="none">بدون تشطيب</option>
+                        <option value="half">نصف تشطيب</option>
+                        <option value="full">مشطب بالكامل</option>
+                        <option value="with-ac">مشطب بالتكييفات</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="required">*</span> الوجهة</label>
+                    <select class="form-control" id="direction" required>
+                        <option value="">اختر الوجهة</option>
+                        <option value="front">أمامية</option>
+                        <option value="side">جانبية</option>
+                        <option value="back">خلفية</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- السعر الإجمالي والدفعة المقدمة -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label><span class="required">*</span> السعر الإجمالي (جنيه)</label>
+                    <input type="number" class="form-control" id="totalPrice" placeholder="مثال: 2500000" required>
+                </div>
+
+                <div class="form-group">
+                    <label><span class="required">*</span> الدفعة المقدمة (جنيه)</label>
+                    <input type="number" class="form-control" id="downPayment" placeholder="مثال: 500000" required>
+                </div>
+            </div>
+
+            <!-- طريقة الدفع -->
+            <div class="form-group">
+                <label><span class="required">*</span> طريقة الدفع</label>
+                <select class="form-control" id="paymentMethod" required>
+                    <option value="">اختر طريقة الدفع</option>
+                    <option value="cash">كاش</option>
+                    <option value="installment">تقسيط</option>
+                </select>
+            </div>
+
+            <!-- نوع القسط (يظهر في حالة التقسيط) -->
+            <div class="form-group hidden" id="installmentTypeGroup">
+                <label><span class="required">*</span> نوع القسط</label>
+                <select class="form-control" id="installmentType">
+                    <option value="">اختر نوع القسط</option>
+                    <option value="monthly">شهري</option>
+                    <option value="quarterly">ربع سنوي</option>
+                </select>
+            </div>
+
+            <!-- وصف إضافي -->
+            <div class="form-group">
+                <label>وصف إضافي (اختياري)</label>
+                <textarea class="form-control" id="description" rows="4" placeholder="أي تفاصيل إضافية عن العقار..."></textarea>
+            </div>
+
+            <!-- زر الإرسال -->
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-plus-circle"></i> إضافة العقار
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>جميع الحقوق محفوظة - Lavida Properties &copy; 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
