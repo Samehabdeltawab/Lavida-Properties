@@ -35,6 +35,15 @@ document.addEventListener('click', (e) => {
     }
 });
 
+// Close menu on window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 991) {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        body.style.overflow = '';
+    }
+});
+
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -76,9 +85,6 @@ document.querySelectorAll('.service-card, .why-us-card, .contact-item').forEach(
 
 // Add loading animation
 window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
+    document.body.style.transition = 'opacity 0.5s ease';
+    document.body.style.opacity = '1';
 });
