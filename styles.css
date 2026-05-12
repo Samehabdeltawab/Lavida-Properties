@@ -913,6 +913,11 @@ html {
         grid-row: auto;
         height: fit-content;
     }
+
+    .service-card:first-child .service-image {
+        height: 200px;
+        min-height: unset;
+    }
     
     .service-image {
         height: 200px;
