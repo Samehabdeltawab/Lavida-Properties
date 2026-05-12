@@ -813,13 +813,19 @@ html {
     
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, 180px);
-        gap: 10px;
+        grid-template-rows: unset;
+        grid-auto-rows: 180px;
+        gap: 15px;
     }
     
     .service-card:first-child {
         grid-row: auto;
         height: fit-content;
+    }
+
+    .service-card:first-child .service-image {
+        height: 180px;
+        min-height: unset;
     }
 
     .service-card:last-child {
@@ -905,6 +911,7 @@ html {
     
     .services-grid {
         grid-template-columns: 1fr;
+        grid-template-rows: unset;
         grid-auto-rows: auto;
         gap: 20px;
     }
@@ -915,17 +922,21 @@ html {
     }
 
     .service-card:first-child .service-image {
-        height: 200px;
+        height: 220px;
         min-height: unset;
+    }
+
+    .service-card:last-child {
+        grid-column: unset;
     }
     
     .service-image {
-        height: 200px;
+        height: 220px;
     }
     
     .service-card {
-        max-width: 500px;
-        margin: 0 auto;
+        max-width: 100%;
+        margin: 0;
     }
     
     .why-us-grid {
@@ -1035,6 +1046,9 @@ html {
     }
     
     .services-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: unset;
+        grid-auto-rows: auto;
         gap: 20px;
     }
     
