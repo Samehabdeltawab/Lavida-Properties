@@ -906,7 +906,7 @@ html {
     .services-grid {
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
-        gap: 10px;
+        gap: 20px;
     }
     
     .service-card:first-child {
@@ -1035,7 +1035,22 @@ html {
     }
     
     .services-grid {
-        gap: 15px;
+        gap: 20px;
+    }
+    
+    .service-card:first-child {
+        grid-row: auto;
+        height: fit-content;
+    }
+
+    .service-card:first-child .service-image {
+        height: 200px;
+        min-height: unset;
+    }
+
+    .service-card {
+        max-width: 100%;
+        margin: 0;
     }
     
     .service-overlay h3 {
