@@ -106,14 +106,14 @@ html {
 
 .logo h1 {
     color: var(--white);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     white-space: nowrap;
 }
 
 @media (max-width: 1200px) {
     .logo h1 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
     }
 }
 
@@ -133,7 +133,7 @@ html {
     color: var(--white);
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
     position: relative;
     padding: 5px 0;
@@ -141,7 +141,7 @@ html {
 
 @media (max-width: 1200px) {
     .nav-links a {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -219,7 +219,7 @@ html {
 }
 
 .hero-content h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.2;
@@ -228,7 +228,7 @@ html {
 }
 
 .hero-content p {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     margin-bottom: 40px;
     font-weight: 400;
     animation: fadeInUp 1.2s ease;
@@ -236,13 +236,13 @@ html {
 
 .cta-button {
     display: inline-block;
-    padding: 18px 50px;
+    padding: 15px 45px;
     background: #FFA500;
     color: var(--white);
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 0.3s ease;
     box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3);
     animation: fadeInUp 1.4s ease;
@@ -274,7 +274,7 @@ html {
 
 .section-title {
     text-align: center;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--text-dark);
     margin-bottom: 3px;
     font-weight: 700;
@@ -282,7 +282,7 @@ html {
 
 .section-subtitle {
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--text-light);
     margin-bottom: 15px;
 }
@@ -344,7 +344,7 @@ html {
 
 .service-overlay h3 {
     color: var(--white);
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     margin: 0;
 }
@@ -382,8 +382,8 @@ html {
 
 .about-desc {
     color: var(--text-light);
-    font-size: 1.05rem;
-    line-height: 1.9;
+    font-size: 0.95rem;
+    line-height: 1.8;
     margin-bottom: 16px;
 }
 
@@ -402,7 +402,7 @@ html {
 
 .stat-number {
     display: block;
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 900;
     color: #FFA500;
     line-height: 1;
@@ -410,7 +410,7 @@ html {
 
 .stat-label {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--text-light);
     margin-top: 6px;
 }
@@ -448,16 +448,16 @@ html {
     display: inline-block;
     background: #FFA500;
     color: var(--white);
-    padding: 6px 18px;
+    padding: 6px 16px;
     border-radius: 50px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 700;
     margin-bottom: 14px;
     letter-spacing: 1px;
 }
 
 .founder-text h2 {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--white);
@@ -465,8 +465,8 @@ html {
 
 .founder-text p {
     color: rgba(255,255,255,0.8);
-    font-size: 1rem;
-    line-height: 1.85;
+    font-size: 0.9rem;
+    line-height: 1.8;
     margin-bottom: 14px;
 }
 
@@ -481,9 +481,9 @@ html {
     background: rgba(255,165,0,0.15);
     border: 1px solid rgba(255,165,0,0.4);
     color: #FFA500;
-    padding: 6px 16px;
+    padding: 5px 14px;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 600;
 }
 
@@ -504,7 +504,7 @@ html {
 .ds-card {
     background: var(--white);
     border-radius: 14px;
-    padding: 35px 25px;
+    padding: 30px 22px;
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
     border-top: 4px solid transparent;
@@ -529,21 +529,21 @@ html {
 }
 
 .ds-icon i {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #FFA500;
 }
 
 .ds-card h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-dark);
     margin-bottom: 10px;
 }
 
 .ds-card p {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--text-light);
-    line-height: 1.75;
+    line-height: 1.7;
 }
 
 /* Core Values Section */
@@ -561,7 +561,7 @@ html {
 
 .value-item {
     text-align: center;
-    padding: 30px 15px;
+    padding: 25px 12px;
     border-radius: 14px;
     background: var(--bg-light);
     transition: all 0.3s ease;
@@ -575,14 +575,14 @@ html {
 }
 
 .value-item i {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: #FFA500;
     margin-bottom: 12px;
     display: block;
 }
 
 .value-item h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;
     color: var(--text-dark);
 }
@@ -607,7 +607,7 @@ html {
 
 .why-us-card {
     text-align: center;
-    padding: 40px 20px;
+    padding: 35px 18px;
     background: var(--bg-light);
     border-radius: 15px;
     transition: all 0.3s ease;
@@ -624,8 +624,8 @@ html {
 }
 
 .why-us-card .icon-wrapper {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     margin: 0 auto 20px;
     background: var(--icon-color);
     border-radius: 50%;
@@ -640,7 +640,7 @@ html {
 }
 
 .why-us-card .icon-wrapper i {
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: var(--white);
     transition: all 0.3s ease;
 }
@@ -650,7 +650,7 @@ html {
 }
 
 .why-us-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin-bottom: 10px;
     font-weight: 600;
     color: var(--text-dark);
@@ -663,6 +663,7 @@ html {
 
 .why-us-card p {
     color: var(--text-light);
+    font-size: 0.85rem;
     line-height: 1.6;
     transition: color 0.3s ease;
 }
@@ -708,8 +709,8 @@ html {
 }
 
 .contact-item .icon-wrapper {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     background: #FFA500;
     border-radius: 50%;
     display: flex;
@@ -720,23 +721,23 @@ html {
 }
 
 .contact-item .icon-wrapper i {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: var(--white);
 }
 
 @media (max-width: 1200px) {
     .contact-item .icon-wrapper {
-        width: 60px;
-        height: 60px;
+        width: 55px;
+        height: 55px;
     }
     
     .contact-item .icon-wrapper i {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 }
 
 .contact-info h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--white);
     margin-bottom: 8px;
     font-weight: 600;
@@ -746,15 +747,16 @@ html {
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 1200px) {
     .contact-info h3 {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     
     .contact-info a {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
 }
 
@@ -765,7 +767,7 @@ html {
 .address-link {
     display: inline-block;
     position: relative;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.85);
 }
 
@@ -780,7 +782,7 @@ html {
 }
 
 .social-media h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--white);
     margin-bottom: 20px;
     font-weight: 600;
@@ -792,22 +794,22 @@ html {
 }
 
 .social-icon {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 @media (max-width: 1200px) {
     .social-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.3rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
     }
 }
 
@@ -858,7 +860,7 @@ html {
 
 .footer p {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
 @media (max-width: 1200px) {
@@ -867,7 +869,7 @@ html {
     }
     
     .footer p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -886,11 +888,11 @@ html {
     }
     
     .hero-content h2 {
-        font-size: 4.5rem;
+        font-size: 4rem;
     }
     
     .hero-content p {
-        font-size: 2rem;
+        font-size: 1.6rem;
     }
     
     .services-grid {
@@ -936,19 +938,19 @@ html {
     }
     
     .nav-links a {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
     
     .hero-content h2 {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
     
     .hero-content p {
-        font-size: 1.6rem;
+        font-size: 1.2rem;
     }
     
     .section-title {
-        font-size: 2.3rem;
+        font-size: 1.4rem;
     }
     
     .services-grid {
@@ -986,7 +988,7 @@ html {
     }
     
     .logo h1 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
     
     .nav-links {
@@ -998,521 +1000,418 @@ html {
         max-width: 350px;
         background: var(--header-footer-bg);
         flex-direction: column;
-        padding: 40px 30px;
-        transition: right 0.4s ease;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.3);
-        gap: 25px;
-        overflow-y: auto;
+        justify-content: flex-start;
+        padding-top: 30px;
+        transition: right 0.3s ease;
+        gap: 0;
+        z-index: 999;
     }
-
+    
     .nav-links.active {
         right: 0;
     }
-
+    
     .nav-links a {
-        font-size: 1.1rem;
-        padding: 10px 0;
-        width: 100%;
+        padding: 15px 30px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .menu-toggle {
-        display: flex;
-        z-index: 1001;
-    }
-
-    .hero {
-        margin-top: 70px;
-        height: 85vh;
-    }
-
-    .hero-content h2 {
-        font-size: 3rem;
-    }
-
-    .hero-content p {
-        font-size: 1.5rem;
-    }
-
-    .cta-button {
-        padding: 16px 45px;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        display: block;
     }
     
-    .section-title {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .hero-content h2 {
         font-size: 2.2rem;
     }
     
-    .section-subtitle {
-        font-size: 1.1rem;
-    }
-    
-    .services-grid {
-        gap: 12px;
-    }
-
-    .service-card:first-child {
-        grid-row: auto;
-        height: fit-content;
-    }
-
-    .service-card:first-child .service-image {
-        height: 180px;
-        min-height: unset;
-    }
-
-    .service-card:last-child {
-        grid-column: unset;
-    }
-    
-    .service-image {
-        height: 180px;
-    }
-    
-    .why-us-grid {
-        gap: 20px;
-    }
-
-    .about-wrapper {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .about-image { order: -1; }
-    .about-text { order: 1; }
-
-    .founder-wrapper {
-        grid-template-columns: 260px 1fr;
-        gap: 40px;
-    }
-
-    .detailed-services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .values-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-        gap: 50px;
-    }
-    
-    .contact-item {
-        margin-bottom: 35px;
-    }
-}
-
-/* Mobile Landscape & Small Tablets (576px to 767px) */
-@media (max-width: 767px) {
-    .container {
-        padding: 0 20px;
-    }
-    
-    .nav-wrapper {
-        padding: 0 20px;
-    }
-    
-    .logo h1 {
-        font-size: 1.4rem;
-    }
-    
-    .nav-links {
-        width: 80%;
-        padding: 35px 25px;
-    }
-
-    .hero {
-        height: 80vh;
-    }
-
-    .hero-content {
-        padding: 15px;
-    }
-
-    .hero-content h2 {
-        font-size: 2.5rem;
-        margin-bottom: 15px;
-    }
-
     .hero-content p {
-        font-size: 1.3rem;
-        margin-bottom: 35px;
-    }
-
-    .cta-button {
-        padding: 14px 40px;
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
     
-    .services,
-    .why-us,
-    .contact {
-        padding: 70px 0;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 12px;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-        margin-bottom: 50px;
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .service-card {
-        max-width: 100%;
-        margin: 0;
-    }
-
-    .service-card:first-child {
-        grid-row: auto;
-        height: fit-content;
-    }
-
-    .service-card:first-child .service-image {
-        height: 220px;
-        min-height: unset;
-    }
-
-    .service-card:last-child {
-        grid-column: unset;
-    }
-    
-    .service-image {
-        height: 220px;
-    }
-    
-    .why-us-grid {
-        gap: 15px;
-    }
-    
-    .why-us-card {
-        flex: 1 1 100%;
-        max-width: 100%;
-        padding: 35px 20px;
-    }
-
-    .about-wrapper {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .about-image { order: -1; }
-    .about-text { order: 1; }
-
-    .about-image img { height: 280px; }
-
-    .about-stats {
-        gap: 15px;
-    }
-
-    .stat-number { font-size: 1.8rem; }
-
-    .founder-wrapper {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .founder-image img { height: 300px; }
-
-    .founder-text h2 { font-size: 1.8rem; }
-
-    .detailed-services-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .values-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-    
-    .contact-wrapper {
-        gap: 40px;
-    }
-    
-    .contact-item {
-        margin-bottom: 30px;
-    }
-    
-    .contact-item .icon-wrapper {
-        width: 55px;
-        height: 55px;
-    }
-    
-    .contact-item .icon-wrapper i {
-        font-size: 1.3rem;
-    }
-    
-    .contact-info h3 {
-        font-size: 1.1rem;
-    }
-    
-    .contact-info a {
-        font-size: 0.95rem;
-    }
-    
-    .social-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 1.2rem;
-    }
-}
-
-/* Mobile Portrait (up to 575px) */
-@media (max-width: 575px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    .nav-wrapper {
-        height: 65px;
-        padding: 0 15px;
-    }
-    
-    .logo h1 {
-        font-size: 1.2rem;
-    }
-    
-    .nav-links {
-        top: 65px;
-        height: calc(100vh - 65px);
-        width: 85%;
-        max-width: 280px;
-        padding: 30px 20px;
-        gap: 20px;
-    }
-    
-    .nav-links a {
-        font-size: 1rem;
-    }
-
-    .hero {
-        margin-top: 65px;
-        height: 75vh;
-    }
-
-    .hero-content h2 {
-        font-size: 2rem;
-        line-height: 1.3;
-    }
-
-    .hero-content p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-    }
-
     .cta-button {
         padding: 12px 35px;
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
     
-    .services,
-    .why-us,
-    .contact {
-        padding: 60px 0;
+    .about-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .about-text {
+        order: 2;
+    }
+    
+    .about-image {
+        order: 1;
     }
     
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
     }
     
     .section-subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 40px;
+        font-size: 0.8rem;
     }
     
     .services-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card:first-child .service-image {
+        height: 250px;
+    }
+    
+    .service-image {
+        height: 250px;
+    }
+    
+    .detailed-services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .ds-card {
+        padding: 25px 20px;
+    }
+    
+    .ds-card h3 {
+        font-size: 0.95rem;
+    }
+    
+    .ds-card p {
+        font-size: 0.8rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
     }
     
-    .service-card:first-child {
-        grid-row: auto;
-        height: fit-content;
-    }
-
-    .service-card:first-child .service-image {
-        height: 200px;
-        min-height: unset;
-    }
-
-    .service-card {
-        flex: unset;
-        max-width: 100%;
-        margin: 0;
-    }
-
-    .service-card:nth-child(3),
-    .service-card:nth-child(4),
-    .service-card:nth-child(5) {
-        flex: unset;
+    .value-item {
+        padding: 20px 10px;
     }
     
-    .service-overlay h3 {
-        font-size: 1rem;
+    .value-item i {
+        font-size: 1.5rem;
     }
     
-    .service-overlay {
-        padding: 10px;
+    .value-item h3 {
+        font-size: 0.85rem;
     }
     
     .why-us-grid {
-        gap: 25px;
+        gap: 20px;
     }
     
     .why-us-card {
-        padding: 30px 15px;
-    }
-    
-    .why-us-card .icon-wrapper {
-        width: 70px;
-        height: 70px;
-    }
-    
-    .why-us-card .icon-wrapper i {
-        font-size: 1.8rem;
+        flex: 0 1 calc(50% - 10px);
+        max-width: none;
+        padding: 25px 15px;
     }
     
     .why-us-card h3 {
-        font-size: 1.2rem;
+        font-size: 0.95rem;
     }
     
     .why-us-card p {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
     }
-
-    .about-image img { height: 220px; }
-    .about-stats { flex-direction: column; gap: 15px; }
-    .stat-item { display: flex; align-items: center; gap: 10px; text-align: right; }
-    .stat-number { font-size: 1.6rem; }
-
-    .founder-image img { height: 250px; }
-    .founder-text h2 { font-size: 1.5rem; }
-    .founder-markets span { font-size: 0.8rem; padding: 5px 12px; }
-
-    .ds-card { padding: 25px 18px; }
-    .ds-icon { width: 50px; height: 50px; }
-    .ds-icon i { font-size: 1.4rem; }
-
-    .values-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    
+    .founder-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
-
-    .value-item { padding: 22px 10px; }
-    .value-item i { font-size: 1.6rem; }
-    .value-item h3 { font-size: 0.9rem; }
+    
+    .founder-text h2 {
+        font-size: 1.6rem;
+    }
+    
+    .founder-text p {
+        font-size: 0.85rem;
+    }
+    
+    .founder-tag {
+        font-size: 0.7rem;
+    }
+    
+    .founder-markets span {
+        font-size: 0.75rem;
+    }
     
     .contact-wrapper {
-        gap: 35px;
-        margin-top: 50px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .contact-info h3 {
+        font-size: 0.95rem;
+    }
+    
+    .contact-info a {
+        font-size: 0.8rem;
+    }
+    
+    .address-link {
+        font-size: 0.8rem;
+    }
+    
+    .social-media h3 {
+        font-size: 0.95rem;
+    }
+    
+    .footer p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Phones (480px to 767px) */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .nav-wrapper {
+        height: 60px;
+        padding: 0 15px;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .nav-links {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hero {
+        margin-top: 60px;
+        min-height: 70vh;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+    
+    .cta-button {
+        padding: 10px 30px;
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-image {
+        height: 200px;
+    }
+    
+    .about-desc {
+        font-size: 0.9rem;
+    }
+    
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .about-stats {
+        gap: 20px;
+    }
+    
+    .detailed-services-grid {
+        gap: 15px;
+    }
+    
+    .ds-card {
+        padding: 20px 15px;
+    }
+    
+    .ds-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .ds-card p {
+        font-size: 0.75rem;
+    }
+    
+    .ds-icon i {
+        font-size: 1.3rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .value-item {
+        padding: 18px 10px;
+    }
+    
+    .value-item i {
+        font-size: 1.4rem;
+    }
+    
+    .value-item h3 {
+        font-size: 0.8rem;
+    }
+    
+    .why-us-grid {
+        gap: 15px;
+    }
+    
+    .why-us-card {
+        flex: 0 1 100%;
+        max-width: 100%;
+        min-width: 100%;
+        padding: 20px 15px;
+    }
+    
+    .why-us-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .why-us-card p {
+        font-size: 0.7rem;
+    }
+    
+    .why-us-card .icon-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .why-us-card .icon-wrapper i {
+        font-size: 1.5rem;
+    }
+    
+    .founder-image {
+        display: none;
+    }
+    
+    .founder-text h2 {
+        font-size: 1.4rem;
+    }
+    
+    .founder-text p {
+        font-size: 0.8rem;
+    }
+    
+    .founder-markets {
+        gap: 8px;
+    }
+    
+    .contact-wrapper {
+        gap: 30px;
     }
     
     .contact-item {
         gap: 15px;
-        margin-bottom: 25px;
+        margin-bottom: 30px;
     }
     
     .contact-item .icon-wrapper {
         width: 50px;
         height: 50px;
+        min-width: 50px;
     }
     
     .contact-item .icon-wrapper i {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
     
     .contact-info h3 {
-        font-size: 1rem;
-        margin-bottom: 6px;
+        font-size: 0.9rem;
     }
     
     .contact-info a {
-        font-size: 0.9rem;
-        word-break: break-word;
+        font-size: 0.75rem;
     }
     
     .address-link {
-        font-size: 0.9rem !important;
+        font-size: 0.75rem;
     }
     
     .social-media h3 {
-        font-size: 1.1rem;
-        margin-bottom: 15px;
+        font-size: 0.9rem;
     }
     
     .social-icons {
         gap: 12px;
+        justify-content: center;
     }
     
     .social-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
-    }
-    
-    .footer {
-        padding: 25px 0;
-    }
-    
-    .footer p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-}
-
-/* Extra Small Mobile (up to 360px) */
-@media (max-width: 360px) {
-    .logo h1 {
-        font-size: 1.1rem;
-    }
-    
-    .hero-content h2 {
-        font-size: 1.7rem;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .cta-button {
-        padding: 10px 30px;
-        font-size: 0.9rem;
-    }
-    
-    .section-title {
-        font-size: 1.7rem;
-    }
-    
-    .service-overlay h3 {
+        width: 40px;
+        height: 40px;
         font-size: 0.95rem;
     }
     
-    .service-overlay {
-        padding: 8px;
+    .footer {
+        padding: 20px 0;
     }
     
-    .why-us-card h3 {
-        font-size: 1.1rem;
+    .footer p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra Small Phones (below 480px) */
+@media (max-width: 479px) {
+    .container {
+        padding: 0 12px;
     }
     
-    .contact-info a {
+    .nav-wrapper {
+        height: 55px;
+        padding: 0 12px;
+    }
+    
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
         font-size: 0.85rem;
     }
     
-    .social-icon {
-        width: 42px;
-        height: 42px;
-        font-size: 1rem;
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 0.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .about-desc {
+        font-size: 0.85rem;
+    }
+    
+    .ds-card h3 {
+        font-size: 0.85rem;
+    }
+    
+    .ds-card p {
+        font-size: 0.7rem;
     }
 }
