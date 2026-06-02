@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/Lavida-Properties/', // 👈 تم إضافة السطر هنا في المكان الصحيح والمناسب للمشروع
+    base: '/', // 👈 تم التعديل هنا إلى سلاش واحدة فقط لأن عندك دومين مخصص
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
