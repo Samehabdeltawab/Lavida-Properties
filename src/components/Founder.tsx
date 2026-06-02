@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Link2, Mail, Globe, Sparkles } from "lucide-react";
+import CEOImage from "../assets/CEO.png";
 
 export default function Founder() {
   return (
@@ -27,10 +28,9 @@ export default function Founder() {
                 <div className="absolute -bottom-4 -left-4 w-full h-full border-2 border-secondary-fixed-dim rounded-2xl -z-10"></div>
                 
                 <img
-                  referrerPolicy="no-referrer"
-                  className="w-full rounded-2xl shadow-xl aspect-[3/4] object-cover hover:scale-[1.02] transition-transform duration-500"
-                  alt="Nader Bourik Founder of Lavida"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFHgjxVukEeL4MRbzY1lhsqdze8kvA4DHQbO5AaTeQie_fFyqGNB2j8jiijdErXN8pxOQweS9AbjZtDTeNiVZpOE5TsiSUS-tkzDkcmMFjNroQZumI4_1dkSAXoquyJp9ijkoIESE_HoQjFZzTlzBczJTpzIuhlCQwkL8LM8Rx0yR1-nz_pMX-Cy8FrDgMFtuYZOvG-nkHB8sTizqvcDTMhefAgxl3lzbgxpezLcqRG-zq0YpFo-LKGn8tTKeNSDYflmz8srNo0A"
+                  className="w-full rounded-2xl shadow-xl aspect-[3/4] object-cover object-top hover:scale-[1.02] transition-transform duration-500"
+                  alt="نادر بريك - مؤسس لافيدا العقارية"
+                  src={CEOImage}
                 />
               </div>
             </motion.div>
@@ -44,12 +44,12 @@ export default function Founder() {
               className="lg:col-span-2 space-y-6"
             >
               <span className="text-secondary font-display text-sm font-bold block tracking-wider uppercase">
-                كلمة المؤسس
+                المؤسس
               </span>
               
               <div className="space-y-1">
                 <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary">
-                  نادر بوريك
+                  نادر بريك
                 </h2>
                 <p className="text-secondary font-display text-base font-semibold">
                   مؤسس الشركة والمدير التنفيذي
