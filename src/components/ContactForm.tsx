@@ -41,6 +41,21 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
         phone: phone.trim(),
         message: message.trim() || undefined
       });
+
+      // إرسال البيانات على واتساب لافيدا
+      const waNumber = "201003306688";
+      const msgParts = [
+        `مرحباً، أنا مهتم بخدماتكم العقارية 🏠`,
+        ``,
+        `👤 الاسم: ${fullName.trim()}`,
+        `📞 رقم الهاتف: ${phone.trim()}`,
+      ];
+      if (message.trim()) {
+        msgParts.push(`💬 الرسالة: ${message.trim()}`);
+      }
+      const waText = encodeURIComponent(msgParts.join("\n"));
+      window.open(`https://wa.me/${waNumber}?text=${waText}`, "_blank");
+
       setIsSuccess(true);
       setFullName("");
       setPhone("");
