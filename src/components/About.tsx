@@ -3,9 +3,7 @@ import { motion } from "motion/react";
 export default function About() {
   const stats = [
     { value: "+10", label: "سنوات خبرة في السوق" },
-    { value: "+500", label: "عميل سعيد ومستثمر" },
     { value: "98%", label: "نسبة رضا العملاء" },
-    { value: "✦", label: "شراكات استراتيجية متطورة" }
   ];
 
   return (
@@ -62,22 +60,9 @@ export default function About() {
 
             {/* Metric Counters Grid */}
             <div className="grid grid-cols-2 gap-6 pt-6 border-t border-outline-variant/30">
-              {stats.slice(0, 2).map((stat, idx) => (
+              {stats.map((stat, idx) => (
                 <div key={idx} className="border-r-4 border-secondary pr-4 font-sans">
                   <span className="font-display text-3xl md:text-4xl font-extrabold text-primary block">
-                    {stat.value}
-                  </span>
-                  <span className="text-sm font-medium text-on-surface-variant mt-1 block">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-2 gap-6 pt-2">
-              {stats.slice(2, 4).map((stat, idx) => (
-                <div key={idx} className="border-r-4 border-secondary/40 pr-4 font-sans">
-                  <span className="font-display text-2xl md:text-3xl font-bold text-secondary block">
                     {stat.value}
                   </span>
                   <span className="text-sm font-medium text-on-surface-variant mt-1 block">
