@@ -145,7 +145,7 @@ export default function Services() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-outline-variant/30 text-right relative"
+                className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-outline-variant/30 text-right relative"
               >
                 {/* Modal Header */}
                 <div className="bg-primary text-white p-6 relative">

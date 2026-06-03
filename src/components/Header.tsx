@@ -85,6 +85,18 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
               {link.label}
             </button>
           ))}
+          {onAdminToggle && (
+            <button
+              onClick={onAdminToggle}
+              className={`font-display text-sm font-semibold px-3 py-1 rounded transition-all duration-300 border border-secondary/30 ${
+                showAdminPortal
+                  ? "bg-secondary text-white"
+                  : "text-secondary hover:bg-secondary/10"
+              }`}
+            >
+              بوابة الإدارة
+            </button>
+          )}
         </nav>
 
         {/* Left side: CTA Button & Burger toggle */}
@@ -124,6 +136,17 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
                 {link.label}
               </button>
             ))}
+            {onAdminToggle && (
+              <button
+                onClick={() => {
+                  setIsOpen(false);
+                  onAdminToggle();
+                }}
+                className="font-display text-base font-semibold py-2 border-r-4 border-transparent text-secondary pr-3 text-right"
+              >
+                بوابة الإدارة (الطلبات)
+              </button>
+            )}
           </nav>
         </div>
       )}

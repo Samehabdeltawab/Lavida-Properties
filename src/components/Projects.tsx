@@ -159,7 +159,8 @@ export default function Projects() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
                 key={p.id}
-                className="group relative overflow-hidden rounded-2xl h-[480px] shadow-lg border border-outline-variant/10"
+                className="group relative overflow-hidden rounded-2xl h-[480px] shadow-lg border border-outline-variant/10 cursor-pointer"
+                onClick={() => setSelectedProject(p)}
               >
                 {/* Image */}
                 <img
@@ -188,8 +189,17 @@ export default function Projects() {
                     </p>
                   </div>
 
+                  <div className="flex flex-row-reverse items-center gap-2 text-secondary-fixed text-xs font-semibold pb-1">
+                    <MapPin className="h-4 w-4" />
+                    <span>{p.location}</span>
+                  </div>
+
                   <button
-                    className="w-full bg-secondary hover:bg-secondary-fixed hover:text-black text-white py-3 rounded-xl font-display text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-not-allowed opacity-80"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProject(p);
+                    }}
+                    className="w-full bg-secondary hover:bg-secondary-fixed hover:text-black text-white py-3 rounded-xl font-display text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <span>اعرف التفاصيل</span>
                   </button>

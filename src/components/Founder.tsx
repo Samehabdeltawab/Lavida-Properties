@@ -6,7 +6,7 @@ export default function Founder() {
   return (
     <section className="py-20 bg-surface">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="bg-surface-container-low rounded-3xl p-6 md:p-12 lg:p-16 border border-outline-variant/10 shadow-sm relative overflow-hidden">
+        <div className="bg-surface-container-low rounded-3xl p-8 md:p-16 border border-outline-variant/10 shadow-sm relative overflow-hidden">
           
           {/* Subtle Decorative sparkles background */}
           <div className="absolute right-10 top-10 text-secondary-fixed/30 pointer-events-none">
@@ -23,14 +23,15 @@ export default function Founder() {
               transition={{ duration: 0.7 }}
               className="lg:col-span-1 flex justify-center"
             >
-              <div className="relative w-full max-w-[260px] sm:max-w-sm mx-auto">
+              <div className="relative w-full max-w-sm">
                 {/* Visual backframe mimicking design */}
-                <div className="absolute -bottom-4 -left-4 w-full h-full border-2 border-secondary-fixed-dim rounded-2xl -z-10"></div>
+                <div className="absolute -bottom-5 -left-5 w-full h-full border-2 border-secondary-fixed-dim rounded-2xl -z-10"></div>
                 
                 <img
-                  className="w-full rounded-2xl shadow-xl aspect-[3/4] object-cover object-top hover:scale-[1.02] transition-transform duration-500"
-                  alt="نادر بريك - مؤسس لافيدا العقارية"
-                  src={CEOImage}
+                  referrerPolicy="no-referrer"
+                  className="w-full rounded-2xl shadow-xl aspect-[3/4] object-cover hover:scale-[1.02] transition-transform duration-500"
+                  alt="Nader Bourik Founder of Lavida"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFHgjxVukEeL4MRbzY1lhsqdze8kvA4DHQbO5AaTeQie_fFyqGNB2j8jiijdErXN8pxOQweS9AbjZtDTeNiVZpOE5TsiSUS-tkzDkcmMFjNroQZumI4_1dkSAXoquyJp9ijkoIESE_HoQjFZzTlzBczJTpzIuhlCQwkL8LM8Rx0yR1-nz_tMX-Cy8FrDgMFtuYZOvG-nkHB8sTizqvcDTMhefAgxl3lzbgxpezLcqRG-zq0YpFo-LKGn8tTKeNSDYflmz8srNo0A"
                 />
               </div>
             </motion.div>
@@ -44,12 +45,12 @@ export default function Founder() {
               className="lg:col-span-2 space-y-6"
             >
               <span className="text-secondary font-display text-sm font-bold block tracking-wider uppercase">
-                المؤسس
+                كلمة المؤسس
               </span>
               
               <div className="space-y-1">
                 <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary">
-                  نادر بريك
+                  نادر بوريك
                 </h2>
                 <p className="text-secondary font-display text-base font-semibold">
                   مؤسس الشركة والمدير التنفيذي

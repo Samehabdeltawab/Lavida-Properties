@@ -68,7 +68,7 @@ export default function WhyUs() {
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-6 gap-6">
           {bentoItems.map((item, index) => {
             const IconComponent = item.icon;
             
@@ -80,22 +80,25 @@ export default function WhyUs() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ scale: 1.02 }}
-                className={`${item.colSpan} rounded-2xl p-6 md:p-8 border transition-all duration-300 flex flex-col ${
+                className={`${item.colSpan} rounded-2xl p-8 border transition-all duration-300 md:flex md:flex-col ${
                   item.isSpecial
                     ? "bg-secondary-fixed text-primary border-transparent shadow-xl"
                     : "bg-white/[0.04] border-white/10 hover:bg-white/[0.08]"
                 }`}
               >
-                <div className="flex flex-row items-start gap-4 text-right">
-                  <div className={`p-3 rounded-xl flex-shrink-0 ${
+                {/* RTL alignment inside bento boxes */}
+                <div className={`flex flex-col md:flex-row-reverse items-center justify-between gap-6 ${item.isSpecial ? '' : 'text-right'}`}>
+                  
+                  {/* Icon on left of block in flex, or centered */}
+                  <div className={`p-4 rounded-xl flex-shrink-0 ${
                     item.isSpecial 
                       ? "bg-primary text-secondary-fixed" 
                       : "bg-white/5 text-secondary-fixed"
                   }`}>
-                    <IconComponent className="h-6 w-6" />
+                    <IconComponent className="h-7 w-7" />
                   </div>
 
-                  <div className="space-y-2 flex-grow">
+                  <div className="space-y-2 flex-grow text-center md:text-right">
                     <h4 className="font-display text-lg font-bold">
                       {item.title}
                     </h4>
@@ -105,6 +108,7 @@ export default function WhyUs() {
                       {item.description}
                     </p>
                   </div>
+
                 </div>
               </motion.div>
             );
