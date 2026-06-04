@@ -1,50 +1,18 @@
 import { motion } from "motion/react";
 import { Brain, Network, UserCheck, Users, TrendingUp, ShieldCheck } from "lucide-react";
+import { useLang } from "../LangContext";
+import { t } from "../i18n";
 
 export default function WhyUs() {
+  const { lang } = useLang();
+
   const bentoItems = [
-    {
-      colSpan: "lg:col-span-2",
-      icon: Brain,
-      title: "خبرة السوق العميقة",
-      description: "فهم شامل وعميق للمتغيرات الاقتصادية والفرص الصاعدة في السوق العقاري المصري.",
-      isSpecial: false
-    },
-    {
-      colSpan: "lg:col-span-4",
-      icon: Network,
-      title: "شبكة مطورين واسعة",
-      description: "شراكات استراتيجية متكاملة ومباشرة مع أقوى المطورين لضمان أفضل الأسعار الحصرية والخصومات لعملائنا.",
-      isSpecial: false
-    },
-    {
-      colSpan: "lg:col-span-3",
-      icon: UserCheck,
-      title: "نهج يركز على العميل",
-      description: "نقدم حلول استثمارية وسكنية مخصصة بالكامل تناسب ميزانيتك، تطلعاتك، وأهدافك المالية المستدامة.",
-      isSpecial: false
-    },
-    {
-      colSpan: "lg:col-span-3",
-      icon: Users,
-      title: "فريق مبيعات محترف",
-      description: "مستشارون وخبراء مبيعات معتمدون مدربون على أعلى مستوى لتقديم الدعم والمشورة الشاملة بموضوعية وحيادية.",
-      isSpecial: false
-    },
-    {
-      colSpan: "lg:col-span-4",
-      icon: TrendingUp,
-      title: "عقلية استثمارية",
-      description: "نهتم بدراسة العائد الإيجاري ومعدل نمو رأس المال لضمان قيمة مستقبلية مستدامة لكافة استثماراتك.",
-      isSpecial: false
-    },
-    {
-      colSpan: "lg:col-span-2",
-      icon: ShieldCheck,
-      title: "خدمة متكاملة",
-      description: "من الاستشارة والتحليل المالي حتى إجراءات الاستلام والتشغيل وما بعد البيع.",
-      isSpecial: true
-    }
+    { colSpan: "lg:col-span-2", icon: Brain,       title: t(lang, "whyus1_title"), description: t(lang, "whyus1_desc"), isSpecial: false },
+    { colSpan: "lg:col-span-4", icon: Network,     title: t(lang, "whyus2_title"), description: t(lang, "whyus2_desc"), isSpecial: false },
+    { colSpan: "lg:col-span-3", icon: UserCheck,   title: t(lang, "whyus3_title"), description: t(lang, "whyus3_desc"), isSpecial: false },
+    { colSpan: "lg:col-span-3", icon: Users,       title: t(lang, "whyus4_title"), description: t(lang, "whyus4_desc"), isSpecial: false },
+    { colSpan: "lg:col-span-4", icon: TrendingUp,  title: t(lang, "whyus5_title"), description: t(lang, "whyus5_desc"), isSpecial: false },
+    { colSpan: "lg:col-span-2", icon: ShieldCheck, title: t(lang, "whyus6_title"), description: t(lang, "whyus6_desc"), isSpecial: true  },
   ];
 
   return (
@@ -54,16 +22,16 @@ export default function WhyUs() {
       <div className="absolute -top-12 -right-12 w-64 h-64 bg-secondary/15 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-primary-container/30 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-right">
+      <div className={`max-w-7xl mx-auto px-6 md:px-12 relative z-10 ${lang === "ar" ? "text-right" : "text-left"}`}>
         
         {/* Section Heading */}
         <div className="text-center mb-16 space-y-4">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-secondary-fixed">
-            لماذا تختار لافيدا العقارية؟
+            {t(lang, "whyus_title")}
           </h2>
           <div className="w-16 h-1 bg-secondary-fixed mx-auto rounded-full"></div>
           <p className="font-sans text-sm md:text-base text-surface-variant max-w-xl mx-auto">
-            نحن شريكك الموثوق وعينك الحارسة التي تضمن لك أعلى العوائد الاستثمارية والسلامة القانونية التامة
+            {t(lang, "whyus_subtitle")}
           </p>
         </div>
 
@@ -86,7 +54,7 @@ export default function WhyUs() {
                     : "bg-white/[0.04] border-white/10 hover:bg-white/[0.08]"
                 }`}
               >
-                <div className="flex flex-row items-start gap-4 text-right">
+                <div className={`flex items-start gap-4 ${lang === "ar" ? "flex-row text-right" : "flex-row text-left"}`}>
                   <div className={`p-3 rounded-xl flex-shrink-0 ${
                     item.isSpecial 
                       ? "bg-primary text-secondary-fixed" 

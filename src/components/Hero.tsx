@@ -1,10 +1,13 @@
 import { motion } from "motion/react";
+import { useLang } from "../LangContext";
+import { t } from "../i18n";
 
 interface HeroProps {
   onCtaclick: (id: string) => void;
 }
 
 export default function Hero({ onCtaclick }: HeroProps) {
+  const { lang } = useLang();
   return (
     <section
       id="hero"
@@ -32,7 +35,7 @@ export default function Hero({ onCtaclick }: HeroProps) {
           className="mb-6 inline-flex items-center gap-2 bg-secondary-fixed/10 border border-secondary-fixed/30 backdrop-blur-md px-4 py-1.5 rounded-full text-secondary-fixed text-xs font-semibold tracking-wide"
         >
           <span>❖</span>
-          <span>الريادة الفاخرة في الاستثمار العقاري</span>
+          <span>{t(lang, "hero_badge")}</span>
         </motion.div>
 
         {/* Heading */}
@@ -42,7 +45,7 @@ export default function Hero({ onCtaclick }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6"
         >
-          استثمر في مستقبلك مع <span className="text-secondary-fixed block sm:inline mt-2 sm:mt-0">لافيدا العقارية</span>
+          {t(lang, "hero_title")} <span className="text-secondary-fixed block sm:inline mt-2 sm:mt-0">{t(lang, "hero_title_brand")}</span>
         </motion.h1>
 
         {/* Paragraph Description */}
@@ -52,7 +55,7 @@ export default function Hero({ onCtaclick }: HeroProps) {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="font-sans text-base sm:text-lg md:text-xl text-surface-variant max-w-3xl mx-auto mb-12 leading-relaxed opacity-90"
         >
-          بوابتك للاستثمار العقاري الأكثر أماناً وربحية في السوق المصري. نقدم حلولاً عقارية متكاملة تجمع بين الفخامة والعائد الاستثماري المضمون.
+          {t(lang, "hero_desc")}
         </motion.p>
 
         {/* CTA Buttons */}
@@ -66,14 +69,14 @@ export default function Hero({ onCtaclick }: HeroProps) {
             onClick={() => onCtaclick("contact")}
             className="bg-secondary-fixed text-primary hover:bg-white hover:text-black hover:scale-[1.03] active:scale-[0.98] px-8 py-4 rounded-xl font-display text-base font-bold shadow-xl transition-all duration-300"
           >
-            احجز استشارتك المجانية
+            {t(lang, "hero_cta1")}
           </button>
           
           <button
             onClick={() => onCtaclick("projects")}
             className="border border-white/40 bg-white/15 hover:bg-white/25 text-white hover:scale-[1.03] active:scale-[0.98] px-8 py-4 rounded-xl font-display text-base font-semibold shadow-md transition-all duration-300"
           >
-            تصفح مشاريعنا
+            {t(lang, "hero_cta2")}
           </button>
         </motion.div>
       </div>

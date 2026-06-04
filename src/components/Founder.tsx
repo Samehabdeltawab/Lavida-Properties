@@ -1,8 +1,11 @@
 import { motion } from "motion/react";
-import { Link2, Mail, Globe, Sparkles } from "lucide-react";
+import { Mail, Sparkles, Linkedin } from "lucide-react";
 import CEOImage from "../assets/CEO.png";
+import { useLang } from "../LangContext";
+import { t } from "../i18n";
 
 export default function Founder() {
+  const { lang } = useLang();
   return (
     <section className="py-20 bg-surface">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -13,7 +16,7 @@ export default function Founder() {
             <Sparkles className="h-20 w-20 animate-pulse" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center text-right">
+          <div className={`grid grid-cols-1 lg:grid-cols-3 gap-12 items-center ${lang === "ar" ? "text-right" : "text-left"}`}>
             
             {/* Left Column on Desktop: Styled Image Container (RTL places this flow appropriately) */}
             <motion.div
@@ -44,37 +47,30 @@ export default function Founder() {
               className="lg:col-span-2 space-y-6"
             >
               <span className="text-secondary font-display text-sm font-bold block tracking-wider uppercase">
-                المؤسس
+                {t(lang, "founder_tag")}
               </span>
               
               <div className="space-y-1">
                 <h2 className="font-display text-3xl md:text-4xl font-extrabold text-primary">
-                  نادر بريك
+                  {t(lang, "founder_name")}
                 </h2>
                 <p className="text-secondary font-display text-base font-semibold">
-                  مؤسس الشركة والمدير التنفيذي
+                  {t(lang, "founder_title")}
                 </p>
               </div>
 
               <div className="w-12 h-1 bg-secondary rounded-full"></div>
 
-              <blockquote className="font-sans text-lg md:text-xl text-on-surface-variant leading-relaxed italic pr-4 border-r-4 border-secondary-fixed-dim/70">
-                "خبير عقاري بخبرة تزيد عن 10 سنوات في السوق المصري. رؤيتي في لافيدا العقارية هي تغيير وجه الاستثمار العقاري الفاخر من خلال ترسيخ قيم الشفافية الموثوقة والاحترافية العالية، وتوفير قيمة حقيقية مستدامة تدوم لأجيال."
+              <blockquote className={`font-sans text-lg md:text-xl text-on-surface-variant leading-relaxed italic ${lang === "ar" ? "pr-4 border-r-4 border-secondary-fixed-dim/70" : "pl-4 border-l-4 border-secondary-fixed-dim/70"}`}>
+                {t(lang, "founder_quote")}
               </blockquote>
 
               <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
-                نهدف دائماً لتجاوز توقعات عملائنا وتقديم الاستشارات الاستراتيجية الصادقة التي تحمي رأس المال وتضاعفه في ظل التغيرات المتسارعة بالقطاع العقاري المصري.
+                {t(lang, "founder_desc")}
               </p>
 
               {/* Social Contact links */}
-              <div className="pt-4 flex flex-row-reverse gap-3.5">
-                <a
-                  href="#contact"
-                  className="w-11 h-11 rounded-full bg-primary hover:bg-secondary text-white flex items-center justify-center transition-colors duration-300 shadow shadow-primary/10"
-                  aria-label="موقع الشركة"
-                >
-                  <Globe className="h-5 w-5" />
-                </a>
+              <div className={`pt-4 flex gap-3.5 ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}>
                 <a
                   href="mailto:Lavidapropertieseg@gmail.com"
                   className="w-11 h-11 rounded-full bg-primary hover:bg-secondary text-white flex items-center justify-center transition-colors duration-300 shadow shadow-primary/10"
@@ -83,11 +79,13 @@ export default function Founder() {
                   <Mail className="h-5 w-5" />
                 </a>
                 <a
-                  href="#contact"
+                  href="https://www.linkedin.com/in/naderborayek/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-11 h-11 rounded-full bg-primary hover:bg-secondary text-white flex items-center justify-center transition-colors duration-300 shadow shadow-primary/10"
-                  aria-label="رابط إضافي"
+                  aria-label="LinkedIn"
                 >
-                  <Link2 className="h-5 w-5" />
+                  <Linkedin className="h-5 w-5" />
                 </a>
               </div>
 

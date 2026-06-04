@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Languages } from "lucide-react";
+import { useLang } from "../LangContext";
+import { t } from "../i18n";
 
 interface HeaderProps {
   onAdminToggle?: () => void;
@@ -9,6 +11,7 @@ interface HeaderProps {
 export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const { lang, toggleLang } = useLang();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,10 +53,10 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
   };
 
   const navLinks = [
-    { id: "hero", label: "الرئيسية" },
-    { id: "services", label: "خدماتنا" },
-    { id: "projects", label: "المشاريع" },
-    { id: "about", label: "من نحن" },
+    { id: "hero", label: t(lang, "nav_home") },
+    { id: "services", label: t(lang, "nav_services") },
+    { id: "projects", label: t(lang, "nav_projects") },
+    { id: "about", label: t(lang, "nav_about") },
   ];
 
   return (
@@ -65,7 +68,7 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
           <img
             alt="Lavida Properties"
             referrerPolicy="no-referrer"
-            className="h-10 md:h-12 object-contain"
+            className="h-12 md:h-14 object-contain"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvGVh0fCaMCg2MP3nVvZXvzBJNaeoo67JBzQG3lY_Zy6cw26jjvraqVqpr5NqX-C9KcAJjvhUg6BYRCfaApVmuS1yVd7G4X5_eo2att-0IQDEW_hCcZZPmP8V-wwGMKxCdDlovPguFzYA9nx29Jqtf9i_4WGhyOR0b5OTnPXw5MqhOQmzLmTSCfNyFZ-8jr4Sin38feJUHwDK1LHsZoPj8zj2rBt7YH5r-vm3hZplsqIKtILpcW-dSNnlkpfdZJOjIiMoj74KuVQ"
           />
         </div>
@@ -88,12 +91,22 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
         </nav>
 
         {/* Left side: CTA Button & Burger toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          {/* Language Toggle Button */}
+          <button
+            onClick={toggleLang}
+            className="flex items-center gap-1.5 border border-outline-variant/50 hover:border-secondary text-on-surface hover:text-secondary px-3 py-2 rounded-lg font-display text-sm font-bold transition-all duration-300 cursor-pointer"
+            aria-label="Toggle language"
+          >
+            <Languages className="h-4 w-4" />
+            <span>{lang === "ar" ? "EN" : "عربي"}</span>
+          </button>
+
           <button
             onClick={() => handleScrollTo("contact")}
             className="bg-primary text-white hover:bg-primary-container px-6 py-2.5 rounded-lg font-display text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
           >
-            اتصل بنا
+            {t(lang, "nav_contact")}
           </button>
 
           {/* Hamburger Menu Toggle for Mobile */}

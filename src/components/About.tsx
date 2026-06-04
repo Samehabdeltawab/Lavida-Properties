@@ -1,9 +1,13 @@
 import { motion } from "motion/react";
+import { useLang } from "../LangContext";
+import { t } from "../i18n";
 
 export default function About() {
+  const { lang } = useLang();
+
   const stats = [
-    { value: "+10", label: "سنوات خبرة في السوق" },
-    { value: "98%", label: "نسبة رضا العملاء" },
+    { value: t(lang, "about_stat1_value"), label: t(lang, "about_stat1_label") },
+    { value: t(lang, "about_stat2_value"), label: t(lang, "about_stat2_label") },
   ];
 
   return (
@@ -39,29 +43,36 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2 space-y-6 text-right"
+            className={`order-1 lg:order-2 space-y-6 ${lang === "ar" ? "text-right" : "text-left"}`}
           >
             <div className="inline-block bg-secondary/10 border border-secondary/20 rounded-full px-4 py-1 text-secondary font-display text-sm font-semibold">
-              من نحن
+              {t(lang, "about_tag")}
             </div>
             
             <h2 className="font-display text-3xl md:text-4xl font-bold text-primary leading-tight">
-              لافيدا العقارية: ريادة وديناميكية في السوق المصري
+              {t(lang, "about_title")}
             </h2>
             
             <div className="space-y-4 font-sans text-on-surface-variant leading-relaxed">
               <p className="text-lg text-on-surface">
-                تعتبر لافيدا العقارية واحدة من الشركات الرائدة والديناميكية في القطاع العقاري المصري. نحن نؤمن بأن العقار ليس مجرد جدران، بل هو استثمار في المستقبل وبناء للمجتمعات.
+                {t(lang, "about_desc1")}
               </p>
               <p className="text-base text-on-surface-variant">
-                بخبرتنا العميقة في السوق وفريق عملنا المتخصص، نوفر لعملائنا فرصة الوصول إلى أفضل الفرص العقارية في أرقى المناطق، مع ضمان الشفافية والاحترافية والالتزام الأقصى بالمعايير العالمية في كل خطوة.
+                {t(lang, "about_desc2")}
               </p>
             </div>
 
             {/* Metric Counters Grid */}
             <div className="grid grid-cols-2 gap-6 pt-6 border-t border-outline-variant/30">
               {stats.map((stat, idx) => (
-                <div key={idx} className="border-r-4 border-secondary pr-4 font-sans">
+                <div
+                  key={idx}
+                  className={`font-sans ${
+                    lang === "ar"
+                      ? "border-r-4 border-secondary pr-4 text-right"
+                      : "border-l-4 border-secondary pl-4 text-left"
+                  }`}
+                >
                   <span className="font-display text-3xl md:text-4xl font-extrabold text-primary block">
                     {stat.value}
                   </span>

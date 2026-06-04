@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Phone, Mail, MapPin, Send, CheckCircle, Facebook, Instagram, Linkedin } from "lucide-react";
 import { LeadSubmission } from "../types";
+import { useLang } from "../LangContext";
+import { t } from "../i18n";
 
 interface ContactFormProps {
   onLeadSubmit: (lead: Omit<LeadSubmission, "id" | "date" | "status">) => void;
@@ -13,20 +15,21 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSuccess, setIsSuccess] = useState(false);
+  const { lang } = useLang();
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!fullName.trim()) {
-      newErrors.fullName = "الاسم بالكامل مطلوب";
+      newErrors.fullName = t(lang, "contact_err_name_required");
     } else if (fullName.trim().length < 3) {
-      newErrors.fullName = "يجب أن يكون الاسم 3 أحرف على الأقل";
+      newErrors.fullName = t(lang, "contact_err_name_short");
     }
 
     const phoneRegex = /^01[0125][0-9]{8}$/;
     if (!phone.trim()) {
-      newErrors.phone = "رقم الهاتف مطلوب";
+      newErrors.phone = t(lang, "contact_err_phone_required");
     } else if (!phoneRegex.test(phone.trim())) {
-      newErrors.phone = "يجب إدخال رقم هاتف مصري صحيح مكون من 11 رقم (مثال: 01012345678)";
+      newErrors.phone = t(lang, "contact_err_phone_invalid");
     }
 
     setErrors(newErrors);
@@ -45,13 +48,13 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
       // إرسال البيانات على واتساب لافيدا
       const waNumber = "201003306688";
       const msgParts = [
-        `مرحباً، أنا مهتم بخدماتكم العقارية 🏠`,
+        t(lang, "contact_wa_greeting"),
         ``,
-        `👤 الاسم: ${fullName.trim()}`,
-        `📞 رقم الهاتف: ${phone.trim()}`,
+        `${t(lang, "contact_wa_name")}: ${fullName.trim()}`,
+        `${t(lang, "contact_wa_phone")}: ${phone.trim()}`,
       ];
       if (message.trim()) {
-        msgParts.push(`💬 الرسالة: ${message.trim()}`);
+        msgParts.push(`${t(lang, "contact_wa_message")}: ${message.trim()}`);
       }
       const waText = encodeURIComponent(msgParts.join("\n"));
       window.open(`https://wa.me/${waNumber}?text=${waText}`, "_blank");
@@ -77,14 +80,14 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
           <div className="grid grid-cols-1 md:grid-cols-5">
             
             {/* Left Side: Dark Info Panel (col-span-2) */}
-            <div className="md:col-span-2 bg-primary p-8 md:p-10 text-white flex flex-col justify-between text-right">
+            <div className={`md:col-span-2 bg-primary p-8 md:p-10 text-white flex flex-col justify-between ${lang === "ar" ? "text-right" : "text-left"}`}>
               
               <div className="space-y-3">
                 <h3 className="font-display text-2xl md:text-3xl font-extrabold text-secondary-fixed">
-                  تواصل معنا الآن
+                  {t(lang, "contact_title")}
                 </h3>
                 <p className="font-sans text-sm text-surface-variant/90 leading-relaxed">
-                  اترك رسالتك وسيقوم أحد خبرائنا العقاريين بالتواصل معك خلال 24 ساعة
+                  {t(lang, "contact_subtitle")}
                 </p>
               </div>
 
@@ -113,7 +116,7 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                     <MapPin className="h-5 w-5" />
                   </div>
                   <span className="text-sm font-semibold hover:text-secondary-fixed transition-colors">
-                    الشيخ زايد - الكورت يارد Office F-315-1
+                    {t(lang, "contact_address")}
                   </span>
                 </li>
               </ul>
@@ -162,13 +165,13 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
 
               {/* Little Footer note */}
               <div className="text-[11px] text-surface-variant/70 border-t border-white/10 pt-4 font-sans text-center">
-                متاحون لخدمتك طوال أيام الأسبوع من الساعة 9 صباحاً إلى 10 مساءً.
+                {t(lang, "contact_hours")}
               </div>
 
             </div>
 
             {/* Right Side: Interactive Input Fields Form (col-span-3) */}
-            <div className="md:col-span-3 p-8 md:p-10 text-right">
+            <div className={`md:col-span-3 p-8 md:p-10 ${lang === "ar" ? "text-right" : "text-left"}`}>
               
               <AnimatePresence mode="wait">
                 {isSuccess ? (
@@ -182,16 +185,16 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                       <CheckCircle className="h-16 w-16" />
                     </div>
                     <h4 className="font-display text-2xl font-bold text-primary">
-                      تم استلام طلبك بنجاح!
+                      {t(lang, "contact_success_title")}
                     </h4>
                     <p className="font-sans text-sm text-on-surface-variant text-center max-w-sm">
-                      شكراً لتواصلك مع لافيدا العقارية. تم تسجيل بياناتك بنجاح وجارٍ مراجعتها، سيقوم مسئول الاستشارات العقارية بالتواصل معك خلال 24 ساعة كحد أقصى.
+                      {t(lang, "contact_success_desc")}
                     </p>
                     <button
                       onClick={() => setIsSuccess(false)}
                       className="mt-6 border border-primary/20 hover:bg-primary/5 text-primary px-5 py-2 rounded-lg font-display text-xs font-semibold transition-all cursor-pointer"
                     >
-                      إرسال طلب جديد
+                      {t(lang, "contact_new_request")}
                     </button>
                   </motion.div>
                 ) : (
@@ -199,7 +202,7 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                     {/* Full Name field */}
                     <div>
                       <label className="block font-display text-sm font-bold text-on-surface mb-2">
-                        الاسم بالكامل
+                        {t(lang, "contact_name_label")}
                       </label>
                       <input
                         type="text"
@@ -208,7 +211,7 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                         className={`w-full bg-surface-container-low border rounded-xl px-4 py-3 font-sans text-sm text-on-surface focus:bg-white focus:border-secondary focus:ring-0 outline-none transition-all ${
                           errors.fullName ? "border-red-500" : "border-outline-variant/50"
                         }`}
-                        placeholder="ادخل اسمك"
+                        placeholder={t(lang, "contact_name_placeholder")}
                       />
                       {errors.fullName && (
                         <p className="text-red-500 text-xs font-sans mt-1.5 font-semibold">
@@ -220,7 +223,7 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                     {/* Phone Number Field */}
                     <div>
                       <label className="block font-display text-sm font-bold text-on-surface mb-2">
-                        رقم الهاتف
+                        {t(lang, "contact_phone_label")}
                       </label>
                       <input
                         type="tel"
@@ -236,7 +239,7 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                         </p>
                       ) : (
                         <p className="text-[11px] text-on-surface-variant/70 font-sans mt-1">
-                          * يرجى إدخال رقم الهاتف المرتبط بـ واتساب لسهولة إرسال العروض.
+                          {t(lang, "contact_phone_hint")}
                         </p>
                       )}
                     </div>
@@ -244,14 +247,14 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                     {/* Message (Optional) */}
                     <div>
                       <label className="block font-display text-sm font-bold text-on-surface mb-2">
-                        الرسالة (اختياري)
+                        {t(lang, "contact_message_label")}
                       </label>
                       <textarea
                         rows={3}
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         className="w-full bg-surface-container-low border border-outline-variant/50 rounded-xl px-4 py-3 font-sans text-sm text-on-surface focus:bg-white focus:border-secondary focus:ring-0 outline-none transition-all resize-none"
-                        placeholder="كيف يمكننا مساعدتك؟"
+                        placeholder={t(lang, "contact_message_placeholder")}
                       />
                     </div>
 
@@ -260,7 +263,7 @@ export default function ContactForm({ onLeadSubmit }: ContactFormProps) {
                       type="submit"
                       className="w-full bg-primary text-white hover:bg-secondary hover:text-white font-display text-base font-bold py-4 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      <span>إرسال الطلب</span>
+                      <span>{t(lang, "contact_submit")}</span>
                       <Send className="h-4 w-4" />
                     </button>
                   </form>
