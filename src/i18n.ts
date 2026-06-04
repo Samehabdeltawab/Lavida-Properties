@@ -60,7 +60,7 @@ const translations = {
     projects_residential: "سكني وفندقي",
     projects_commercial: "تجاري وإداري وطبي",
     projects_coastal: "ساحلي",
-    projects_details: "اعرف التفاصيل",
+    projects_details: "عرض التفاصيل",
     projects_close: "إغلاق",
     project1_title: "سكني - فندقي",
     project1_desc: "وحدات سكنية وفندقية فاخرة في أرقى أحياء القاهرة والمدن الجديدة.",

@@ -214,12 +214,11 @@ export default function Projects() {
                       {p.description}
                     </p>
                   </div>
-                  <button
-                    onClick={() => setSelectedProject(p)}
-                    className="w-full bg-secondary hover:bg-secondary-fixed hover:text-black text-white py-3 rounded-xl font-display text-sm font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
+                  <div
+                    className="w-full bg-secondary/60 text-white py-3 rounded-xl font-display text-sm font-bold shadow-lg flex items-center justify-center gap-2 cursor-default select-none opacity-70"
                   >
                     <span>{t(lang, "projects_details")}</span>
-                  </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
