@@ -16,6 +16,11 @@ export default function App() {
   const [leads, setLeads] = useState<LeadSubmission[]>([]);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
 
+  // Scroll to top on page load/refresh
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   // Load leads from localStorage on initial render
   useEffect(() => {
     const savedLeads = localStorage.getItem("lavida_leads_list");

@@ -20,6 +20,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
 
   const toggleLang = () => {
     setLang((prev) => prev === "ar" ? "en" : "ar");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
