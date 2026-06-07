@@ -10,15 +10,47 @@ import ContactForm from "./components/ContactForm";
 import LeadDashboard from "./components/LeadDashboard";
 import WhatsAppButton from "./components/WhatsAppButton";
 import Footer from "./components/Footer";
+import AdminAuth from "./components/AdminAuth";
+import UnitsManager from "./components/UnitsManager";
+import UnitsPage from "./components/UnitsPage";
 import { LeadSubmission } from "./types";
 
 export default function App() {
   const [leads, setLeads] = useState<LeadSubmission[]>([]);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
+  const [showAdminAuth, setShowAdminAuth] = useState(false);
+  const [showUnitsManager, setShowUnitsManager] = useState(false);
+
+  // Units page navigation state
+  const [unitsOpen, setUnitsOpen] = useState(false);
+  const [unitsInitialType, setUnitsInitialType] = useState("All");
+
+  const handleNavigate = (type: string) => {
+    setUnitsInitialType(type);
+    setUnitsOpen(true);
+    window.scrollTo({ top: 0, behavior: "instant" });
+  };
 
   // Scroll to top on page load/refresh
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
+  // Keyboard shortcut: Ctrl + Shift + A → open units admin
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "A") {
+        e.preventDefault();
+        const isAuth = sessionStorage.getItem("lavida_admin_auth") === "true";
+        if (isAuth) {
+          setShowUnitsManager(true);
+        } else {
+          setShowAdminAuth(true);
+        }
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Load leads from localStorage on initial render
@@ -85,6 +117,16 @@ export default function App() {
   return (
     <div className="min-h-screen bg-surface text-on-surface antialiased select-none font-sans relative">
       
+      {/* ── Units Page (navigated from Projects section) ─────────────────── */}
+      {unitsOpen && (
+        <div className="fixed inset-0 z-[60] bg-surface overflow-y-auto">
+          <UnitsPage
+            initialType={unitsInitialType}
+            onBack={() => { setUnitsOpen(false); window.scrollTo({ top: 0, behavior: "instant" }); }}
+          />
+        </div>
+      )}
+
       {/* 1. Dynamic Header Navigation */}
       <Header
         onAdminToggle={() => setShowAdminPortal(!showAdminPortal)}
@@ -101,7 +143,7 @@ export default function App() {
       <Services />
 
       {/* 5. Custom Selected Properties with detail modulators */}
-      <Projects />
+      <Projects onNavigate={handleNavigate} />
 
       {/* 6. WhyUs Bento Grid Design with material-equivalent styling */}
       <WhyUs />
@@ -116,7 +158,14 @@ export default function App() {
       <WhatsAppButton />
 
       {/* 10. Footer info links */}
-      <Footer onScrollTo={handleScrollTo} />
+      <Footer
+        onScrollTo={handleScrollTo}
+        onOpenAdmin={() => {
+          const isAuth = sessionStorage.getItem("lavida_admin_auth") === "true";
+          if (isAuth) { setShowUnitsManager(true); }
+          else { setShowAdminAuth(true); }
+        }}
+      />
 
       {/* 11. Admin Leads Dashboard controller */}
       <LeadDashboard
@@ -126,6 +175,19 @@ export default function App() {
         onUpdateStatus={handleUpdateStatus}
         onDeleteLead={handleDeleteLead}
         onClearAll={handleClearAllLeads}
+      />
+
+      {/* 12. Admin Auth Modal (Ctrl+Shift+A) */}
+      <AdminAuth
+        isOpen={showAdminAuth}
+        onClose={() => setShowAdminAuth(false)}
+        onSuccess={() => { setShowAdminAuth(false); setShowUnitsManager(true); }}
+      />
+
+      {/* 13. Units Manager Panel */}
+      <UnitsManager
+        isOpen={showUnitsManager}
+        onClose={() => setShowUnitsManager(false)}
       />
 
     </div>

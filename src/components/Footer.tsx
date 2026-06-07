@@ -1,11 +1,13 @@
 import { useLang } from "../LangContext";
 import { t } from "../i18n";
+import { Settings2 } from "lucide-react";
 
 interface FooterProps {
   onScrollTo: (id: string) => void;
+  onOpenAdmin: () => void;
 }
 
-export default function Footer({ onScrollTo }: FooterProps) {
+export default function Footer({ onScrollTo, onOpenAdmin }: FooterProps) {
   const { lang } = useLang();
   return (
     <footer className="bg-primary text-white py-12 border-t border-white/5 relative">
@@ -21,7 +23,7 @@ export default function Footer({ onScrollTo }: FooterProps) {
           />
         </div>
 
-        {/* Center: Legal RTL anchor links */}
+        {/* Center: Legal RTL anchor links + Admin */}
         <div className={`flex flex-col ${lang === "ar" ? "sm:flex-row-reverse" : "sm:flex-row"} items-center gap-6 sm:gap-8 text-on-primary-container font-sans text-xs`}>
           <a href="#privacy" className="hover:text-secondary-fixed transition-colors">
             {t(lang, "footer_privacy")}
@@ -32,12 +34,21 @@ export default function Footer({ onScrollTo }: FooterProps) {
           <a href="#sitemap" className="hover:text-secondary-fixed transition-colors">
             {t(lang, "footer_sitemap")}
           </a>
+          <button
+            onClick={onOpenAdmin}
+            className="flex items-center gap-1.5 text-white/30 hover:text-secondary transition-colors cursor-pointer"
+          >
+            <Settings2 className="h-3.5 w-3.5" />
+            {lang === "ar" ? "إدارة الوحدات" : "Units Manager"}
+          </button>
         </div>
 
         {/* Left side: Copyrights */}
-        <p className="font-sans text-xs text-on-primary-container/60 text-center md:text-left">
-          {t(lang, "footer_rights")}
-        </p>
+        <div className="flex flex-col items-center md:items-end gap-2">
+          <p className="font-sans text-xs text-on-primary-container/60 text-center md:text-left">
+            {t(lang, "footer_rights")}
+          </p>
+        </div>
 
       </div>
     </footer>
