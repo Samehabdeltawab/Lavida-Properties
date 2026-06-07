@@ -55,7 +55,7 @@ const translations = {
 
     // Projects
     projects_tag: "مشاريعنا",
-    projects_title: "مشاريعنا المختارة",
+    projects_title: "المشاريع",
     projects_subtitle: "تصفح مجموعتنا الحصرية من العقارات الاستثنائية والفريدة في أرقى المواقع الجغرافية بمصر",
     projects_all: "الكل",
     projects_residential: "سكني وفندقي",
@@ -224,7 +224,7 @@ const translations = {
 
     // Projects
     projects_tag: "Our Projects",
-    projects_title: "Featured Projects",
+    projects_title: "Projects",
     projects_subtitle: "Browse our exclusive collection of exceptional properties in Egypt's most prestigious locations",
     projects_all: "All",
     projects_residential: "Residential & Hotel",
