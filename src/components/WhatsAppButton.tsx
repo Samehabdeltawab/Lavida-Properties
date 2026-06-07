@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageSquare, Send, X, Bot, ShieldAlert } from "lucide-react";
 
@@ -6,7 +6,7 @@ export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Array<{ text: string; isBot: boolean }>>([
     {
-      text: "مرحباً بك في لافيدا بروبيرتز! كيف يمكن لمستشارنا الاستثماري مساعدتك اليوم؟",
+      text: "مرحباً بك في لاڤيدا بروبيرتز! كيف يمكن لمستشارنا الاستثماري مساعدتك اليوم؟",
       isBot: true
     }
   ]);
@@ -72,7 +72,7 @@ export default function WhatsAppButton() {
                   <Bot className="h-6 w-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold">مستشار لافيدا العقاري</h4>
+                  <h4 className="text-sm font-bold">مستشار لاڤيدا العقاري</h4>
                   <span className="text-[10px] text-secondary-fixed block">● متصل الآن ومستعد لخدمتك</span>
                 </div>
               </div>

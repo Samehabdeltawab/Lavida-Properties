@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+﻿import { motion } from "motion/react";
 import { Mail, Sparkles, Linkedin } from "lucide-react";
 import CEOImage from "../assets/CEO.png";
 import { useLang } from "../LangContext";
@@ -32,7 +32,7 @@ export default function Founder() {
                 
                 <img
                   className="w-full rounded-2xl shadow-xl aspect-[3/4] object-cover object-top hover:scale-[1.02] transition-transform duration-500"
-                  alt="نادر بريك - مؤسس لافيدا بروبيرتز"
+                  alt="نادر بريك - مؤسس لاڤيدا بروبيرتز"
                   src={CEOImage}
                 />
               </div>
