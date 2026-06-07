@@ -32,7 +32,7 @@ export default function Founder() {
                 
                 <img
                   className="w-full rounded-2xl shadow-xl aspect-[3/4] object-cover object-top hover:scale-[1.02] transition-transform duration-500"
-                  alt="نادر بريك - مؤسس لافيدا العقارية"
+                  alt="نادر بريك - مؤسس لافيدا بروبيرتز"
                   src={CEOImage}
                 />
               </div>
