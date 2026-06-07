@@ -54,9 +54,9 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
 
   const navLinks = [
     { id: "hero", label: t(lang, "nav_home") },
+    { id: "about", label: t(lang, "nav_about") },
     { id: "services", label: t(lang, "nav_services") },
     { id: "projects", label: t(lang, "nav_projects") },
-    { id: "about", label: t(lang, "nav_about") },
   ];
 
   return (

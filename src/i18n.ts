@@ -174,7 +174,7 @@ const translations = {
     nav_home: "Home",
     nav_services: "Services",
     nav_projects: "Projects",
-    nav_about: "About",
+    nav_about: "About Us",
     nav_contact: "Contact Us",
 
     // Hero
