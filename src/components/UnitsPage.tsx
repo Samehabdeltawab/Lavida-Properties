@@ -76,7 +76,7 @@ export default function UnitsPage({ initialType, onBack }: Props) {
 
       {/* ── Sticky top breadcrumb ─────────────────────────────────────────── */}
       <div className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-outline-variant/20 shadow-sm">
-        <div className={`max-w-7xl mx-auto px-6 py-4 flex items-center gap-3 ${lang === "ar" ? "flex-row-reverse" : ""}`}>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-3">
           <button
             onClick={onBack}
             className="flex items-center gap-1.5 text-primary hover:text-secondary transition-colors font-semibold text-sm cursor-pointer"
@@ -88,7 +88,7 @@ export default function UnitsPage({ initialType, onBack }: Props) {
           <span className="font-display font-bold text-primary text-sm">
             {lang === "ar" ? "الوحدات المتاحة" : "Available Units"}
           </span>
-          <span className={`${lang === "ar" ? "me-auto" : "ms-auto"} text-xs text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full`}>
+          <span className="ms-auto text-xs text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full">
             {displayed.length} {lang === "ar" ? "وحدة" : "unit(s)"}
           </span>
         </div>
@@ -97,7 +97,7 @@ export default function UnitsPage({ initialType, onBack }: Props) {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-10">
 
         {/* ── Filter tabs ─────────────────────────────────────────────────── */}
-        <div className={`flex flex-wrap gap-2 mb-10 ${lang === "ar" ? "justify-end" : "justify-start"}`}>
+        <div className="flex flex-wrap gap-2 mb-10 justify-start">
           {TYPES.map(type => (
             <button
               key={type.value}

@@ -31,9 +31,13 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "instant" });
   };
 
-  // Scroll to top on page load/refresh
+  // Scroll to top on page load/refresh + auto-logout on refresh
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
+    const navEntries = performance.getEntriesByType("navigation") as PerformanceNavigationTiming[];
+    if (navEntries[0]?.type === "reload") {
+      sessionStorage.removeItem("lavida_admin_auth");
+    }
   }, []);
 
   // Keyboard shortcut: Ctrl + Shift + A → open units admin

@@ -102,6 +102,12 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
 
+  // ── Idle Auto-logout ─────────────────────────────────────
+  const IDLE_TIMEOUT_SEC = 60;
+  const [idleCountdown, setIdleCountdown] = useState<number | null>(null);
+  const lastActivityRef = useRef<number>(Date.now());
+  const idleIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
   useEffect(() => {
     if (isOpen) {
       const saved = localStorage.getItem(UNITS_KEY);
@@ -204,8 +210,48 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
 
   const handleLogout = () => {
     sessionStorage.removeItem("lavida_admin_auth");
+    if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
     onClose();
   };
+
+  // ── Idle timer effect ─────────────────────────────────────
+  useEffect(() => {
+    if (!isOpen) {
+      if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+      return;
+    }
+    lastActivityRef.current = Date.now();
+    const resetIdle = () => {
+      lastActivityRef.current = Date.now();
+      setIdleCountdown(null);
+    };
+    window.addEventListener("mousemove", resetIdle);
+    window.addEventListener("keydown", resetIdle);
+    window.addEventListener("click", resetIdle);
+    window.addEventListener("touchstart", resetIdle);
+
+    idleIntervalRef.current = setInterval(() => {
+      const idleSec = Math.floor((Date.now() - lastActivityRef.current) / 1000);
+      const remaining = IDLE_TIMEOUT_SEC - idleSec;
+      if (remaining <= 0) {
+        sessionStorage.removeItem("lavida_admin_auth");
+        if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+        onClose();
+      } else if (remaining <= 10) {
+        setIdleCountdown(remaining);
+      } else {
+        setIdleCountdown(null);
+      }
+    }, 1000);
+
+    return () => {
+      window.removeEventListener("mousemove", resetIdle);
+      window.removeEventListener("keydown", resetIdle);
+      window.removeEventListener("click", resetIdle);
+      window.removeEventListener("touchstart", resetIdle);
+      if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+    };
+  }, [isOpen]);
 
   const handleExport = () => {
     const headers = [L("الاسم","Name"),L("النوع","Type"),L("المشروع","Project"),L("العنوان","Address"),L("المساحة م²","Area m²"),L("الدور","Floor"),L("السعر الإجمالي","Total Price"),L("سعر المتر","Price/m²"),L("الغرف","Rooms"),L("الحمامات","Bathrooms"),L("التشطيب","Finishing"),L("الحالة","Status"),L("ملاحظات","Notes"),L("تاريخ الإضافة","Date Added")];
@@ -472,6 +518,13 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
             </div>
           )}
         </div>
+
+        {/* ── Idle countdown warning ── */}
+        {idleCountdown !== null && (
+          <div className="bg-amber-500 text-white text-center text-sm py-2.5 px-4 shrink-0 font-display font-bold">
+            {L(`سيتم تسجيل الخروج تلقائياً خلال ${idleCountdown} ثانية`, `Auto-logout in ${idleCountdown}s due to inactivity`)}
+          </div>
+        )}
       </motion.div>
 
       {/* ====== Add / Edit Form Modal ====== */}
