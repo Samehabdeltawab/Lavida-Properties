@@ -4,9 +4,10 @@ const translations = {
   ar: {
     // Header
     nav_home: "الرئيسية",
+    nav_about: "من نحن",
     nav_services: "خدماتنا",
     nav_projects: "المشاريع",
-    nav_about: "من نحن",
+    nav_whyus: "لماذا لافيدا؟",
     nav_contact: "اتصل بنا",
 
     // Hero
@@ -172,9 +173,10 @@ const translations = {
   en: {
     // Header
     nav_home: "Home",
+    nav_about: "About Us",
     nav_services: "Services",
     nav_projects: "Projects",
-    nav_about: "About Us",
+    nav_whyus: "Why Lavida?",
     nav_contact: "Contact Us",
 
     // Hero

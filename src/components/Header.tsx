@@ -15,7 +15,7 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "about", "services", "projects", "contact"];
+      const sections = ["hero", "about", "services", "projects", "whyus", "contact"];
       const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
@@ -57,6 +57,7 @@ export default function Header({ onAdminToggle, showAdminPortal }: HeaderProps) 
     { id: "about", label: t(lang, "nav_about") },
     { id: "services", label: t(lang, "nav_services") },
     { id: "projects", label: t(lang, "nav_projects") },
+    { id: "whyus", label: t(lang, "nav_whyus") },
   ];
 
   return (

@@ -16,7 +16,7 @@ export default function WhyUs() {
   ];
 
   return (
-    <section className="py-20 bg-primary text-white overflow-hidden relative">
+    <section id="whyus" className="py-20 bg-primary text-white overflow-hidden relative">
       
       {/* Absolute Decorative Circles */}
       <div className="absolute -top-12 -right-12 w-64 h-64 bg-secondary/15 rounded-full blur-3xl pointer-events-none"></div>
