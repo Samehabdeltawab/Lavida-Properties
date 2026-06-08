@@ -103,10 +103,9 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
   const videoInputRef = useRef<HTMLInputElement>(null);
 
   // ── Idle Auto-logout ─────────────────────────────────────
-  const IDLE_TIMEOUT_SEC = 60;
   const [idleCountdown, setIdleCountdown] = useState<number | null>(null);
-  const lastActivityRef = useRef<number>(Date.now());
-  const idleIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const idleTimerRef  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const countdownRef  = useRef<ReturnType<typeof setInterval> | null>(null);
   const onCloseRef = useRef(onClose);
   useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
 
@@ -212,46 +211,55 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
 
   const handleLogout = () => {
     sessionStorage.removeItem("lavida_admin_auth");
-    if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+    if (idleTimerRef.current)  clearTimeout(idleTimerRef.current);
+    if (countdownRef.current)  clearInterval(countdownRef.current);
     onClose();
   };
 
   // ── Idle timer effect ─────────────────────────────────────
   useEffect(() => {
     if (!isOpen) {
-      if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+      if (idleTimerRef.current)  clearTimeout(idleTimerRef.current);
+      if (countdownRef.current)  clearInterval(countdownRef.current);
+      setIdleCountdown(null);
       return;
     }
-    lastActivityRef.current = Date.now();
-    const resetIdle = () => {
-      lastActivityRef.current = Date.now();
-      setIdleCountdown(null);
-    };
-    window.addEventListener("mousemove", resetIdle);
-    window.addEventListener("keydown", resetIdle);
-    window.addEventListener("click", resetIdle);
-    window.addEventListener("touchstart", resetIdle);
 
-    idleIntervalRef.current = setInterval(() => {
-      const idleSec = Math.floor((Date.now() - lastActivityRef.current) / 1000);
-      const remaining = IDLE_TIMEOUT_SEC - idleSec;
-      if (remaining <= 0) {
-        sessionStorage.removeItem("lavida_admin_auth");
-        if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
-        onCloseRef.current();
-      } else if (remaining <= 10) {
-        setIdleCountdown(remaining);
-      } else {
-        setIdleCountdown(null);
-      }
-    }, 1000);
+    const startTimer = () => {
+      if (idleTimerRef.current)  clearTimeout(idleTimerRef.current);
+      if (countdownRef.current)  clearInterval(countdownRef.current);
+      setIdleCountdown(null);
+
+      // After 50s of idle → start 10s visible countdown then logout
+      idleTimerRef.current = setTimeout(() => {
+        let n = 10;
+        setIdleCountdown(n);
+        countdownRef.current = setInterval(() => {
+          n -= 1;
+          if (n <= 0) {
+            if (countdownRef.current) clearInterval(countdownRef.current);
+            sessionStorage.removeItem("lavida_admin_auth");
+            onCloseRef.current();
+          } else {
+            setIdleCountdown(n);
+          }
+        }, 1000);
+      }, 50_000);
+    };
+
+    startTimer();
+    window.addEventListener("mousemove",  startTimer);
+    window.addEventListener("keydown",    startTimer);
+    window.addEventListener("click",      startTimer);
+    window.addEventListener("touchstart", startTimer);
 
     return () => {
-      window.removeEventListener("mousemove", resetIdle);
-      window.removeEventListener("keydown", resetIdle);
-      window.removeEventListener("click", resetIdle);
-      window.removeEventListener("touchstart", resetIdle);
-      if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
+      window.removeEventListener("mousemove",  startTimer);
+      window.removeEventListener("keydown",    startTimer);
+      window.removeEventListener("click",      startTimer);
+      window.removeEventListener("touchstart", startTimer);
+      if (idleTimerRef.current)  clearTimeout(idleTimerRef.current);
+      if (countdownRef.current)  clearInterval(countdownRef.current);
     };
   }, [isOpen]);
 
