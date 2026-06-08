@@ -107,6 +107,8 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
   const [idleCountdown, setIdleCountdown] = useState<number | null>(null);
   const lastActivityRef = useRef<number>(Date.now());
   const idleIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const onCloseRef = useRef(onClose);
+  useEffect(() => { onCloseRef.current = onClose; }, [onClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -236,7 +238,7 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
       if (remaining <= 0) {
         sessionStorage.removeItem("lavida_admin_auth");
         if (idleIntervalRef.current) clearInterval(idleIntervalRef.current);
-        onClose();
+        onCloseRef.current();
       } else if (remaining <= 10) {
         setIdleCountdown(remaining);
       } else {
