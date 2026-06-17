@@ -46,6 +46,20 @@ function getStatusInfo(s?: string) {
   return STATUS_MAP[s] ?? { ar: s, en: s, cls: "bg-gray-400 text-white" };
 }
 
+// Loads an image from IndexedDB if src starts with "idb:", otherwise renders directly
+function IdbImg({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const [url, setUrl] = useState<string | null>(null);
+  useEffect(() => {
+    if (src.startsWith("idb:")) {
+      getBlobUrl(src.slice(4)).then(u => setUrl(u ?? null));
+    } else {
+      setUrl(src);
+    }
+  }, [src]);
+  if (!url) return <div className={`${className} bg-gray-100 animate-pulse`} />;
+  return <img src={url} alt={alt} className={className} />;
+}
+
 export default function UnitsPage({ initialType, onBack }: Props) {
   const { lang } = useLang();
   const [units, setUnits] = useState<PropertyUnit[]>([]);
@@ -143,7 +157,7 @@ export default function UnitsPage({ initialType, onBack }: Props) {
                 {/* Image */}
                 <div className="relative h-52 bg-primary/5 overflow-hidden">
                   {unit.images?.[0]
-                    ? <img src={unit.images[0]} alt={unit.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    ? <IdbImg src={unit.images[0]} alt={unit.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     : <div className="w-full h-full flex items-center justify-center"><Home className="h-16 w-16 text-primary/20" /></div>
                   }
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/70 to-transparent" />
@@ -221,7 +235,7 @@ export default function UnitsPage({ initialType, onBack }: Props) {
               {/* Gallery */}
               {selected.images && selected.images.length > 0 && (
                 <div className="relative h-64 md:h-72 shrink-0 overflow-hidden rounded-t-2xl">
-                  <img src={selected.images[imgIdx]} alt={selected.name} className="w-full h-full object-cover" />
+                  <IdbImg src={selected.images[imgIdx]} alt={selected.name} className="w-full h-full object-cover" />
                   {selected.images.length > 1 && (
                     <>
                       <button

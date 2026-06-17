@@ -84,6 +84,39 @@ const STATUS_DISPLAY: Record<string, {ar:string;en:string}> = {
   "مباع":  {ar:"مباع",  en:"Sold"},
 };
 
+// ── IdbImage: loads image from IndexedDB or uses src directly ────────────────
+function IdbImage({ src, isMain, mainLabel, onRemove }: {
+  src: string;
+  isMain: boolean;
+  mainLabel: string;
+  onRemove: () => void;
+}) {
+  const [url, setUrl] = useState<string | null>(null);
+  useEffect(() => {
+    if (src.startsWith("idb:")) {
+      getBlobUrl(src.slice(4)).then(u => setUrl(u));
+    } else {
+      setUrl(src);
+    }
+  }, [src]);
+  if (!url) return <div className="aspect-square rounded-xl bg-gray-100 animate-pulse" />;
+  return (
+    <div className="relative group aspect-square">
+      <img src={url} alt="" className="w-full h-full object-cover rounded-xl border border-gray-100" />
+      <button
+        type="button"
+        onClick={onRemove}
+        className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+      >
+        <X className="h-3 w-3" />
+      </button>
+      {isMain && (
+        <span className="absolute bottom-1 left-1 bg-black/50 text-white text-[9px] px-1 rounded">{mainLabel}</span>
+      )}
+    </div>
+  );
+}
+
 export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
   const { lang } = useLang();
   const L = (ar: string, en: string) => lang === "ar" ? ar : en;
@@ -130,12 +163,16 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
     const remaining = 15 - formData.images.length;
     const toProcess = files.slice(0, remaining);
     setIsUploadingImages(true);
-    const compressed: string[] = [];
+    const keys: string[] = [];
     for (const file of toProcess) {
       const b64 = await compressImage(file);
-      compressed.push(b64);
+      // store in IndexedDB to avoid localStorage 5MB limit
+      const res = await fetch(b64);
+      const blob = await res.blob();
+      const key = await storeBlob(blob);
+      keys.push("idb:" + key);
     }
-    setFormData(prev => ({ ...prev, images: [...prev.images, ...compressed] }));
+    setFormData(prev => ({ ...prev, images: [...prev.images, ...keys] }));
     setIsUploadingImages(false);
     e.target.value = "";
   };
@@ -759,21 +796,16 @@ export default function UnitsManager({ isOpen, onClose }: UnitsManagerProps) {
                   {formData.images.length > 0 && (
                     <div className="grid grid-cols-5 gap-2 mt-3">
                       {formData.images.map((src, idx) => (
-                        <div key={idx} className="relative group aspect-square">
-                          <img
-                            src={src} alt=""
-                            className="w-full h-full object-cover rounded-xl border border-gray-100"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setFormData({ ...formData, images: formData.images.filter((_, i) => i !== idx) })}
-                            className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                          >
-                            <X className="h-3 w-3" />
-                          </button>
-                          {idx === 0 && (
-                            <span className="absolute bottom-1 left-1 bg-black/50 text-white text-[9px] px-1 rounded">{L("رئيسية","Main")}</span>
-                          )}
+                        <div key={src}>
+                        <IdbImage
+                          src={src}
+                          isMain={idx === 0}
+                          mainLabel={L("رئيسية","Main")}
+                          onRemove={() => {
+                            if (src.startsWith("idb:")) removeBlob(src.slice(4)).catch(() => {});
+                            setFormData(prev => ({ ...prev, images: prev.images.filter((_, i) => i !== idx) }));
+                          }}
+                        />
                         </div>
                       ))}
                     </div>

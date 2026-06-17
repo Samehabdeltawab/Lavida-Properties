@@ -5,7 +5,6 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Projects from "./components/Projects";
 import WhyUs from "./components/WhyUs";
-import Founder from "./components/Founder";
 import ContactForm from "./components/ContactForm";
 import LeadDashboard from "./components/LeadDashboard";
 import WhatsAppButton from "./components/WhatsAppButton";
@@ -13,12 +12,14 @@ import Footer from "./components/Footer";
 import AdminAuth from "./components/AdminAuth";
 import UnitsManager from "./components/UnitsManager";
 import UnitsPage from "./components/UnitsPage";
+import FounderModal from "./components/FounderModal";
 import { LeadSubmission } from "./types";
 
 export default function App() {
   const [leads, setLeads] = useState<LeadSubmission[]>([]);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
   const [showAdminAuth, setShowAdminAuth] = useState(false);
+  const [showFounder, setShowFounder] = useState(false);
   const [showUnitsManager, setShowUnitsManager] = useState(false);
 
   // Units page navigation state
@@ -140,17 +141,14 @@ export default function App() {
       {/* 3. About Corporate Section with counter metrics */}
       <About />
 
-      {/* 4. Complete Services Modular Interactive Block */}
-      <Services />
-
-      {/* 5. Custom Selected Properties with detail modulators */}
+      {/* 4. Custom Selected Properties with detail modulators */}
       <Projects onNavigate={handleNavigate} />
 
-      {/* 6. WhyUs Bento Grid Design with material-equivalent styling */}
-      <WhyUs />
+      {/* 5. Complete Services Modular Interactive Block */}
+      <Services />
 
-      {/* 7. Founder word of honor */}
-      <Founder />
+      {/* 7. WhyUs Bento Grid Design with material-equivalent styling */}
+      <WhyUs />
 
       {/* 8. Conversion lead generation module */}
       <ContactForm onLeadSubmit={handleLeadSubmit} />
@@ -161,6 +159,7 @@ export default function App() {
       {/* 10. Footer info links */}
       <Footer
         onScrollTo={handleScrollTo}
+        onOpenFounder={() => setShowFounder(true)}
         onOpenAdmin={() => {
           const isAuth = sessionStorage.getItem("lavida_admin_auth") === "true";
           if (isAuth) { setShowUnitsManager(true); }
@@ -189,6 +188,12 @@ export default function App() {
       <UnitsManager
         isOpen={showUnitsManager}
         onClose={() => setShowUnitsManager(false)}
+      />
+
+      {/* 14. Founder Modal */}
+      <FounderModal
+        isOpen={showFounder}
+        onClose={() => setShowFounder(false)}
       />
 
     </div>

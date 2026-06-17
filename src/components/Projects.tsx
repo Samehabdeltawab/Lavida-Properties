@@ -107,8 +107,7 @@ export default function Projects({ onNavigate }: Props) {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              onClick={() => onNavigate("All")}
-              className="group relative overflow-hidden rounded-2xl h-[480px] shadow-lg border border-outline-variant/10 cursor-pointer"
+              className="group relative overflow-hidden rounded-2xl h-[480px] shadow-lg border border-outline-variant/10"
             >
               <img
                 referrerPolicy="no-referrer"
@@ -125,11 +124,7 @@ export default function Projects({ onNavigate }: Props) {
                   <h3 className="font-display text-2xl font-bold text-white tracking-wide">{p.title}</h3>
                   <p className="font-sans text-sm text-surface-variant line-clamp-2 leading-relaxed opacity-95">{p.description}</p>
                 </div>
-                <div className={`flex items-center gap-4 text-white/75 text-xs ${lang === "ar" ? "flex-row-reverse justify-end" : ""}`}>
-                  <span className="flex items-center gap-1.5"><MapPin className="h-3.5 w-3.5" />{p.location}</span>
-                  <span className="flex items-center gap-1.5"><Coins className="h-3.5 w-3.5" />{p.priceStart}</span>
-                </div>
-                <div className="w-full bg-secondary hover:bg-secondary/90 text-white py-3 rounded-xl font-display text-sm font-bold shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-colors">
+                <div className="w-full bg-secondary/60 text-white/70 py-3 rounded-xl font-display text-sm font-bold shadow-lg flex items-center justify-center gap-2 cursor-not-allowed">
                   {t(lang, "projects_details")}
                 </div>
               </div>

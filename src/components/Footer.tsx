@@ -5,9 +5,10 @@ import { Settings2 } from "lucide-react";
 interface FooterProps {
   onScrollTo: (id: string) => void;
   onOpenAdmin: () => void;
+  onOpenFounder: () => void;
 }
 
-export default function Footer({ onScrollTo, onOpenAdmin }: FooterProps) {
+export default function Footer({ onScrollTo, onOpenAdmin, onOpenFounder }: FooterProps) {
   const { lang } = useLang();
   return (
     <footer className="bg-primary text-white py-12 border-t border-white/5 relative">
@@ -34,6 +35,12 @@ export default function Footer({ onScrollTo, onOpenAdmin }: FooterProps) {
           <a href="#sitemap" className="hover:text-secondary-fixed transition-colors">
             {t(lang, "footer_sitemap")}
           </a>
+          <button
+            onClick={onOpenFounder}
+            className="hover:text-secondary-fixed transition-colors cursor-pointer"
+          >
+            {lang === "ar" ? "المؤسس" : "Founder"}
+          </button>
           <button
             onClick={onOpenAdmin}
             className="flex items-center gap-1.5 text-white/30 hover:text-secondary transition-colors cursor-pointer"
