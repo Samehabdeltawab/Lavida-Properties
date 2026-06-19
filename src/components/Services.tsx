@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Megaphone, Tag, Users, Rocket, RefreshCw, Headphones, ArrowLeft, X } from "lucide-react";
+import { Megaphone, Tag, Users, Rocket, RefreshCw, Headphones, X } from "lucide-react";
 import { useLang } from "../LangContext";
 import { t } from "../i18n";
 
@@ -15,6 +15,9 @@ interface ServiceItem {
 export default function Services() {
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const { lang } = useLang();
+
+  const getFirstWords = (text: string, count = 3) =>
+    text.split(" ").slice(0, count).join(" ");
 
   const services: ServiceItem[] = [
     {
@@ -114,7 +117,7 @@ export default function Services() {
               <motion.div
                 key={service.id}
                 whileHover={{ y: -6, boxShadow: "0 10px 30px -10px rgba(0, 51, 78, 0.12)" }}
-                className={`bg-white p-8 rounded-xl border border-outline-variant/30 shadow-card transition-all duration-300 flex flex-col justify-between ${lang === "ar" ? "text-right" : "text-left"}`}
+                className={`bg-white p-8 rounded-xl border border-outline-variant/30 shadow-card transition-all duration-300 flex flex-col ${lang === "ar" ? "text-right" : "text-left"}`}
               >
                 <div className="space-y-4">
                   <div className="inline-flex p-3 rounded-lg bg-secondary-fixed/30 text-secondary mb-2">
@@ -124,20 +127,15 @@ export default function Services() {
                     {service.title}
                   </h3>
                   <p className="font-sans text-sm text-on-surface-variant leading-relaxed">
-                    {service.description}
+                    {getFirstWords(service.description)}...{" "}
+                    <button
+                      onClick={() => setSelectedService(service)}
+                      className="text-secondary font-semibold hover:text-primary transition-colors cursor-pointer inline"
+                    >
+                      {lang === "ar" ? "اقرأ المزيد" : "Read more"}
+                    </button>
                   </p>
                 </div>
-                
-                <button
-                  onClick={() => setSelectedService(service)}
-                  className={`mt-6 flex items-center justify-start gap-1 text-secondary font-display text-sm font-semibold hover:text-primary transition-colors cursor-pointer group ${lang === "ar" ? "flex-row-reverse" : "flex-row"}`}
-                >
-                  <span>{t(lang, "services_read_more")}</span>
-                  {lang === "ar"
-                    ? <ArrowLeft className="h-4 w-4 transform group-hover:-translate-x-1 transition-transform" />
-                    : <ArrowLeft className="h-4 w-4 rotate-180 transform group-hover:translate-x-1 transition-transform" />
-                  }
-                </button>
               </motion.div>
             );
           })}
